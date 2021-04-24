@@ -4,7 +4,7 @@ package edu.sjsu.model;
  * Class used to store account information
  */
 public class Account {
-    private double balance;
+    double balance;
     private double amountToWithdraw;
 
     /**
