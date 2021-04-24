@@ -23,4 +23,8 @@ public class Account {
         return this.amountToDeposit;
     }
 
+    public void withdraw() {
+        balance = balance - this.getAmountToWithdraw();
+    }
+
 }
