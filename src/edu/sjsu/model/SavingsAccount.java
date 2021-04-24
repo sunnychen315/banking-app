@@ -2,7 +2,7 @@ package edu.sjsu.model;
 
 public class SavingsAccount extends Account {
 
-    double amountToDeposit;
+    private double amountToDeposit;
     private final int THRESHOLD = 1000;
 
     public SavingsAccount(double balance, double amountToWithdraw, double amountToDeposit) {

@@ -4,8 +4,8 @@ package edu.sjsu.model;
  * Class used to store account information
  */
 public class Account {
-    double balance;
-    double amountToWithdraw;
+    private double balance;
+    private double amountToWithdraw;
 
     /**
      * Constructor to update variables
