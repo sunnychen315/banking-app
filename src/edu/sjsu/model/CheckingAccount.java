@@ -27,7 +27,7 @@ public class CheckingAccount extends Account {
     }
 
     /**
-     * deposits to savings account balance and updates balance
+     * deposits to checking account balance and updates balance
      */
     public void deposit() {
         this.balance += this.amountToDeposit;
