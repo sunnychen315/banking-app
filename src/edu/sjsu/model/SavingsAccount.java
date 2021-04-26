@@ -1,8 +1,8 @@
 package edu.sjsu.model;
 
 /**
- * Class used to represent savings account
- * user can withdraw and deposit
+ * Class used to represent savings account where user accumulates money not ready to use yet
+ * user can withdraw and deposit  into a savings account
  */
 public class SavingsAccount extends Account {
     private double amountToDeposit;
