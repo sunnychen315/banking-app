@@ -10,7 +10,7 @@ public class SavingsAccount extends Account {
     /**
      * Constructor to update variables
      *
-     * @param balance
+     * @param balance balance of the savings account
      */
     public SavingsAccount(double balance) {
         super(balance);

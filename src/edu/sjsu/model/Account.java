@@ -9,7 +9,7 @@ public class Account {
     /**
      * Constructor to update variables
      *
-     * @param balance
+     * @param balance of the account
      */
     public Account(double balance) {
         this.balance = balance;

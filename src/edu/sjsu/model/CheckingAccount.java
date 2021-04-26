@@ -9,7 +9,7 @@ public class CheckingAccount extends Account {
     /**
      * Constructor to update variables
      *
-     * @param balance
+     * @param balance of the checking account
      */
     public CheckingAccount(double balance) {
         super(balance);
