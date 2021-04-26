@@ -1,35 +1,26 @@
 package edu.sjsu.model;
 
 /**
- * Class used to represent savings account
- * user can withdraw and deposit
+ * Class used to represent savings account where user accumulates money not ready to use yet
+ * user can withdraw and deposit  into a savings account
  */
 public class SavingsAccount extends Account {
-    private double amountToDeposit;
     private final int THRESHOLD = 1000;
 
     /**
-     * @param balance
-     * @param amountToWithdraw
-     * @param amountToDeposit
+     * Constructor to update variables
+     *
+     * @param balance balance of the savings account
      */
-    public SavingsAccount(double balance, double amountToWithdraw, double amountToDeposit) {
-        super(balance, amountToWithdraw);
-        this.amountToDeposit = amountToDeposit;
-    }
-
-    /**
-     * @return amount to deposit
-     */
-    public double getAmountToDeposit() {
-        return this.amountToDeposit;
+    public SavingsAccount(double balance) {
+        super(balance);
     }
 
     /**
      * deposits to savings account balance and updates balance
      */
-    public void deposit() {
-        this.balance += this.amountToDeposit;
+    public void deposit(int amountToDeposit) {
+        this.balance += amountToDeposit;
     }
 
     /**
