@@ -12,15 +12,16 @@ public class SavingsAccount extends Account {
      *
      * @param balance balance of the savings account
      */
-    public SavingsAccount(double balance) {
-        super(balance);
-    }
+    public SavingsAccount(double balance, double interest) {
+		super(balance, interest);
+	}
 
     /**
      * deposits to savings account balance and updates balance
      */
     public void deposit(int amountToDeposit) {
         this.balance += amountToDeposit;
+        transactions.add("Deposited $" + amountToDeposit);
     }
 
     /**
@@ -28,11 +29,8 @@ public class SavingsAccount extends Account {
      *
      * @return false if the balance is less than the threshold, true otherwise
      */
-    public boolean canWithdraw() {
-        if (this.balance < THRESHOLD) {
-            return false;
-        } else
-            return true;
+    public boolean canWithdraw(double amount) {
+        return (amount < THRESHOLD && amount < this.balance);
     }
 
 }
