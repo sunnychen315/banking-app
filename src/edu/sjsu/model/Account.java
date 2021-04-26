@@ -5,17 +5,14 @@ package edu.sjsu.model;
  */
 public class Account {
     double balance;
-    private double amountToWithdraw;
 
     /**
      * Constructor to update variables
      *
      * @param balance
-     * @param amountToWithdraw
      */
-    public Account(double balance, double amountToWithdraw) {
+    public Account(double balance) {
         this.balance = balance;
-        this.amountToWithdraw = amountToWithdraw;
     }
 
     /**
@@ -26,17 +23,10 @@ public class Account {
     }
 
     /**
-     * @return amount to withdraw
-     */
-    public double getAmountToWithdraw() {
-        return this.amountToWithdraw;
-    }
-
-    /**
      * updates balance after withdraw
      */
-    public void withdraw() {
-        this.balance -= this.amountToWithdraw;
+    public void withdraw(double amountToWithdraw) {
+        this.balance -= amountToWithdraw;
     }
 
 }
