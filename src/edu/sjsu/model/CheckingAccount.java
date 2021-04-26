@@ -12,24 +12,16 @@ public class CheckingAccount extends Account {
      * Constructor to update variables
      *
      * @param balance
-     * @param amountToWithdraw
      */
-    public CheckingAccount(double balance, double amountToWithdraw, double amountToDeposit) {
-        super(balance, amountToWithdraw);
+    public CheckingAccount(double balance) {
+        super(balance);
         this.amountToDeposit = amountToDeposit;
     }
 
     /**
-     * @return amount to deposit
+     * deposits to checking account balance and updates balance
      */
-    public double getAmountToDeposit() {
-        return this.amountToDeposit;
-    }
-
-    /**
-     * deposits to savings account balance and updates balance
-     */
-    public void deposit() {
-        this.balance += this.amountToDeposit;
+    public void deposit(int amountToDeposit) {
+        this.balance += amountToDeposit;
     }
 }
