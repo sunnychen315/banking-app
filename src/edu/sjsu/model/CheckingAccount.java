@@ -6,8 +6,6 @@ package edu.sjsu.model;
  */
 public class CheckingAccount extends Account {
 
-    private double amountToDeposit;
-
     /**
      * Constructor to update variables
      *
@@ -15,7 +13,6 @@ public class CheckingAccount extends Account {
      */
     public CheckingAccount(double balance) {
         super(balance);
-        this.amountToDeposit = amountToDeposit;
     }
 
     /**
