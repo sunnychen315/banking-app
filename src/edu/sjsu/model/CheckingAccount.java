@@ -7,10 +7,11 @@ import java.util.ArrayList;
  * user can withdraw and deposit checking account
  */
 public class CheckingAccount implements Account {
-	
-	private double balance, interest;
-	private ArrayList<String> transactions;
-	/**
+
+    private double balance, interest;
+    private ArrayList<String> transactions;
+
+    /**
      * Constructor to update variables
      *
      * @param balance of the account
@@ -32,9 +33,9 @@ public class CheckingAccount implements Account {
      * @return interest
      */
     public double getInterest() {
-    	return this.interest;
+        return this.interest;
     }
-    
+
     /**
      * updates balance after withdraw
      */
@@ -45,14 +46,15 @@ public class CheckingAccount implements Account {
 
     /**
      * Transfers money to another account
+     *
      * @param from
      * @param to
      * @param amount
      */
     public void transfer(Account from, Account to, double amount) {
-    	//logic goes here
+        
     }
-    
+
     /**
      * deposits to checking account balance and updates balance
      */

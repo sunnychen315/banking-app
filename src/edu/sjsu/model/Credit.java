@@ -9,11 +9,10 @@ public class Credit implements Account {
     private final double spendingLimit = 1000;
     CheckingAccount moneySource;
     private double balance, interest;
-	private ArrayList<String> transactions;
-	
-	/**
+    private ArrayList<String> transactions;
+
+    /**
      * Constructor to update variables
-     *
      */
     public Credit(CheckingAccount source, double interest) {
         this.balance = 0;
@@ -33,9 +32,9 @@ public class Credit implements Account {
      * @return interest
      */
     public double getInterest() {
-    	return this.interest;
+        return this.interest;
     }
-    
+
     /**
      * updates balance after withdraw
      */
@@ -46,21 +45,23 @@ public class Credit implements Account {
 
     /**
      * Transfers money to another account
+     *
      * @param from
      * @param to
      * @param amount
      */
     public void transfer(Account from, Account to, double amount) {
-    	//logic goes here
+        //logic goes here
     }
-    
+
     /**
      * Returns if the specified amount of money can be taken out of the card
+     *
      * @param amount
      * @return whether or not this transaction would be approved
      */
-    public boolean isPayableThroughChecking(double amount){
-        if(balance > spendingLimit && amount < moneySource.getBalance()){
+    public boolean isPayableThroughChecking(double amount) {
+        if (balance > spendingLimit && amount < moneySource.getBalance()) {
             return true;
         }
         return false;
