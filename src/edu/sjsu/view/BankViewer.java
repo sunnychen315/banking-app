@@ -4,8 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class BankViewer extends JFrame {
-    JLabel topBar;
-
 
     public BankViewer() {
 
@@ -20,7 +18,7 @@ public class BankViewer extends JFrame {
         lp.setBounds(this.getX(), this.getY(), this.getWidth(), this.getHeight() / 6);
 
         TopBar bar = new TopBar(this.getX(), this.getY(), this.getWidth(), this.getHeight() / 6);
-        topBar = new JLabel(bar);
+        JLabel topBar = new JLabel(bar);
         topBar.setLayout(null);
         topBar.setSize(this.getWidth(), this.getHeight() / 6);
         topBar.setOpaque(true);
@@ -35,6 +33,16 @@ public class BankViewer extends JFrame {
         bankName.setVerticalAlignment(SwingConstants.TOP);
         bankName.setVisible(true);
 
+        JLabel accountName = new JLabel("Account Name");
+        accountName.setFont(new Font("Sans Serif", Font.BOLD, 30));
+        accountName.setBounds((int) (this.getWidth() * 0.9), this.getHeight() / 10, 500, 500);
+        accountName.setBackground(new Color(160, 212, 226));
+        accountName.setForeground(Color.WHITE);
+        accountName.setHorizontalAlignment(SwingConstants.LEFT);
+        accountName.setVerticalAlignment(SwingConstants.TOP);
+        accountName.setVisible(true);
+
+        lp.add(accountName);
         lp.add(bankName);
         lp.add(topBar);
         this.add(lp);
