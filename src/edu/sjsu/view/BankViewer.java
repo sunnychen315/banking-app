@@ -26,20 +26,20 @@ public class BankViewer extends JFrame {
 
         JLabel bankName = new JLabel("Bank Name");
         bankName.setFont(new Font("Sans Serif", Font.BOLD, 50));
-        bankName.setBounds(0, this.getHeight() / 10, 500, 500);
+        bankName.setBounds(this.getX() + 10, this.getY() - 30, this.getWidth(), this.getHeight() / 6);
         bankName.setBackground(new Color(160, 212, 226));
         bankName.setForeground(Color.WHITE);
         bankName.setHorizontalAlignment(SwingConstants.LEFT);
-        bankName.setVerticalAlignment(SwingConstants.TOP);
+        bankName.setVerticalAlignment(SwingConstants.BOTTOM);
         bankName.setVisible(true);
 
         JLabel accountName = new JLabel("Account Name");
         accountName.setFont(new Font("Sans Serif", Font.BOLD, 30));
-        accountName.setBounds((int) (this.getWidth() * 0.9), this.getHeight() / 10, 500, 500);
+        accountName.setBounds(this.getX(), this.getY() - 30, this.getWidth() - 10, this.getHeight() / 6);
         accountName.setBackground(new Color(160, 212, 226));
         accountName.setForeground(Color.WHITE);
-        accountName.setHorizontalAlignment(SwingConstants.LEFT);
-        accountName.setVerticalAlignment(SwingConstants.TOP);
+        accountName.setHorizontalAlignment(SwingConstants.RIGHT);
+        accountName.setVerticalAlignment(SwingConstants.BOTTOM);
         accountName.setVisible(true);
 
         lp.add(accountName);
