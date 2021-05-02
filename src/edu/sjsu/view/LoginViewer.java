@@ -1,19 +1,13 @@
 package edu.sjsu.view;
 
-import javax.swing.*;
-import java.awt.*;
-
-public class LoginViewer extends JFrame {
+public class LoginViewer extends BankViewer {
 
     // instance variables
 
     public LoginViewer() {
 
         // Sets the characteristics of the JFrame
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        super();
         this.setTitle("Login Page");
-        this.setLayout(new FlowLayout());
-        this.setVisible(true);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }
