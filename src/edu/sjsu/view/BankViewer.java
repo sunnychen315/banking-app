@@ -16,15 +16,29 @@ public class BankViewer extends JFrame {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize((int) screenSize.getWidth(), (int) screenSize.getHeight());
 
+        JLayeredPane lp = new JLayeredPane();
+        lp.setBounds(this.getX(), this.getY(), this.getWidth(), this.getHeight() / 6);
+
         TopBar bar = new TopBar(this.getX(), this.getY(), this.getWidth(), this.getHeight() / 6);
         topBar = new JLabel(bar);
         topBar.setLayout(null);
         topBar.setSize(this.getWidth(), this.getHeight() / 6);
+        topBar.setOpaque(true);
         topBar.setVisible(true);
-        this.add(topBar);
 
+        JLabel bankName = new JLabel("Bank Name");
+        bankName.setFont(new Font("Sans Serif", Font.BOLD, 50));
+        bankName.setBounds(0, this.getHeight() / 10, 500, 500);
+        bankName.setBackground(new Color(160, 212, 226));
+        bankName.setForeground(Color.WHITE);
+        bankName.setHorizontalAlignment(SwingConstants.LEFT);
+        bankName.setVerticalAlignment(SwingConstants.TOP);
+        bankName.setVisible(true);
 
-        this.setLayout(new FlowLayout());
+        lp.add(bankName);
+        lp.add(topBar);
+        this.add(lp);
+
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
