@@ -51,7 +51,6 @@ public class User {
         return userName;
     }
 
-
     /**
      * @return password
      */
