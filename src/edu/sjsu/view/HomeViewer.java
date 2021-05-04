@@ -10,5 +10,7 @@ public class HomeViewer extends BankViewer {
         super();
         this.setTitle("Home Page");
 
+        addAccountName();
+        
     }
 }

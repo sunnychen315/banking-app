@@ -7,7 +7,7 @@ import java.awt.event.MouseEvent;
 
 public class BankViewer extends JFrame {
 
-    JLayeredPane lp;
+    JPanel topPanel;
     JLabel bankName;
 
     public BankViewer() {
@@ -19,15 +19,10 @@ public class BankViewer extends JFrame {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize((int) screenSize.getWidth(), (int) screenSize.getHeight());
 
-        lp = new JLayeredPane();
-        lp.setBounds(this.getX(), this.getY(), this.getWidth(), this.getHeight() / 6);
-
-        TopBar bar = new TopBar(this.getX(), this.getY(), this.getWidth(), this.getHeight() / 6);
-        JLabel topBar = new JLabel(bar);
-        topBar.setLayout(null);
-        topBar.setSize(this.getWidth(), this.getHeight() / 6);
-        topBar.setOpaque(true);
-        topBar.setVisible(true);
+        topPanel = new JPanel();
+        topPanel.setBounds(0, 0, this.getWidth(), this.getHeight() / 6);
+        topPanel.setSize(this.getWidth(), this.getHeight() / 6);
+        topPanel.setLayout(null);
 
         bankName = new JLabel("Bank Name");
         bankName.setFont(new Font("Sans Serif", Font.BOLD, 50));
@@ -38,10 +33,13 @@ public class BankViewer extends JFrame {
         bankName.setVerticalAlignment(SwingConstants.BOTTOM);
         bankName.setVisible(true);
 
-        lp.add(bankName);
-        lp.add(topBar);
-        this.add(lp);
+        topPanel.add(bankName);
+        topPanel.setBackground(new Color(160, 212, 226));
+        topPanel.setVisible(true);
 
+        this.add(topPanel);
+
+        this.setLayout(null);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
@@ -49,7 +47,7 @@ public class BankViewer extends JFrame {
     public void addAccountName() {
         JLabel accountName = new JLabel("Account Name");
         accountName.setFont(new Font("Sans Serif", Font.BOLD, 30));
-        accountName.setBounds(3 * (this.getWidth() / 4), this.getY() - 30, (this.getWidth() / 4) - 10, this.getHeight() / 6);
+        accountName.setBounds(3 * (this.getWidth() / 4), this.getY() - 20, (this.getWidth() / 4) - 10, this.getHeight() / 6);
         accountName.setBackground(new Color(160, 212, 226));
         accountName.setForeground(Color.WHITE);
         accountName.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -62,7 +60,7 @@ public class BankViewer extends JFrame {
             }
         });
 
-        lp.add(accountName, 0);
+        topPanel.add(accountName);
     }
 
     public void addHomeActionListener() {
