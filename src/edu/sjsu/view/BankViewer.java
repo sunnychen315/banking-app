@@ -8,6 +8,7 @@ import java.awt.event.MouseEvent;
 public class BankViewer extends JFrame {
 
     JLayeredPane lp;
+    JLabel bankName;
 
     public BankViewer() {
 
@@ -28,7 +29,7 @@ public class BankViewer extends JFrame {
         topBar.setOpaque(true);
         topBar.setVisible(true);
 
-        JLabel bankName = new JLabel("Bank Name");
+        bankName = new JLabel("Bank Name");
         bankName.setFont(new Font("Sans Serif", Font.BOLD, 50));
         bankName.setBounds(this.getX() + 10, this.getY() - 30, this.getWidth() / 4, this.getHeight() / 6);
         bankName.setBackground(new Color(160, 212, 226));
@@ -37,17 +38,48 @@ public class BankViewer extends JFrame {
         bankName.setVerticalAlignment(SwingConstants.BOTTOM);
         bankName.setVisible(true);
 
-        bankName.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {
-                // CONSTRUCT A HOME VIEWER
-            }
-        });
-
         lp.add(bankName);
         lp.add(topBar);
         this.add(lp);
 
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    public void addAccountName() {
+        JLabel accountName = new JLabel("Account Name");
+        accountName.setFont(new Font("Sans Serif", Font.BOLD, 30));
+        accountName.setBounds(3 * (this.getWidth() / 4), this.getY() - 30, (this.getWidth() / 4) - 10, this.getHeight() / 6);
+        accountName.setBackground(new Color(160, 212, 226));
+        accountName.setForeground(Color.WHITE);
+        accountName.setHorizontalAlignment(SwingConstants.RIGHT);
+        accountName.setVerticalAlignment(SwingConstants.BOTTOM);
+        accountName.setVisible(true);
+
+        accountName.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                signOut();
+            }
+        });
+
+        lp.add(accountName, 0);
+    }
+
+    public void addHomeActionListener() {
+        bankName.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                BankViewer.this.dispose();
+                new HomeViewer();
+            }
+        });
+    }
+
+    public void signOut() {
+        int input = JOptionPane.showConfirmDialog(null, "Do you wish to sign out?", "Sign Out", JOptionPane.YES_NO_OPTION);
+        if (input == 0) {
+            this.dispose();
+            new LoginViewer();
+        }
+        // else, do nothing
     }
 }
