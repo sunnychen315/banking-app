@@ -36,6 +36,7 @@ public class AccountViewer extends BankViewer {
     public void signOut() {
         int input = JOptionPane.showConfirmDialog(null, "Do you wish to sign out?", "Sign Out", JOptionPane.YES_NO_OPTION);
         if (input == 0) {
+            this.dispose();
             new LoginViewer();
         } else {
             // do nothing
