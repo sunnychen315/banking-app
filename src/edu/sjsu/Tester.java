@@ -1,9 +1,9 @@
 package edu.sjsu;
 
-import edu.sjsu.view.AccountViewer;
+import edu.sjsu.view.LoginViewer;
 
 public class Tester {
     public static void main(String[] args) {
-        AccountViewer v = new AccountViewer();
+        new LoginViewer();
     }
 }
