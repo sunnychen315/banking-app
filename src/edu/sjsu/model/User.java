@@ -6,14 +6,16 @@ import java.util.ArrayList;
  * Class used to store user information
  */
 public class User {
-    ArrayList<Account> accounts;
+    ArrayList<Account> accounts; //list of account user has
     String password;
     String userName;
 
     /**
      * Constructor for User class
      */
-    public User() {
+    public User(String userName, String password) {
+        this.password = password;
+        this.userName = userName;
         accounts = new ArrayList<Account>();
     }
 
@@ -45,16 +47,10 @@ public class User {
     /**
      * @return userName
      */
-    public String getName() {
+    public String getUserName() {
         return userName;
     }
 
-    /**
-     * @param pass to set the password
-     */
-    public void setPassword(String pass) {
-        this.password = pass;
-    }
 
     /**
      * @return password

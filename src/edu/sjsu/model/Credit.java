@@ -1,23 +1,67 @@
 package edu.sjsu.model;
 
+import java.util.ArrayList;
+
 /**
  * Class used to keep track of the credit card balance
  */
-public class Credit extends Account {
+public class Credit implements Account {
     private final double spendingLimit = 1000;
+    CheckingAccount moneySource;
+    private double balance, interest;
+    private ArrayList<String> transactions;
 
     /**
-     * Constructor with @param balance
+     * Constructor to update variables
      */
-    public Credit(double balance) {
-        super(balance);
+    public Credit(CheckingAccount source, double interest) {
+        this.balance = 0;
+        this.interest = interest;
+        transactions = new ArrayList<>();
+        moneySource = source;
     }
 
     /**
-     * @return true or false to see if there is enough balance to pay the bill
+     * @return balance
      */
-    public boolean isPayableThroughChecking() {
-        if (balance > spendingLimit) {
+    public double getBalance() {
+        return this.balance;
+    }
+
+    /**
+     * @return interest
+     */
+    public double getInterest() {
+        return this.interest;
+    }
+
+    /**
+     * updates balance after withdraw
+     */
+    public void withdraw(double amountToWithdraw) {
+        this.balance -= amountToWithdraw;
+        transactions.add("Withdrew $" + amountToWithdraw);
+    }
+
+    /**
+     * Transfers money to another account
+     *
+     * @param from
+     * @param to
+     * @param amount
+     */
+    public void transfer(Account from, Account to, double amount) {
+        //logic goes here
+    }
+
+    /**
+     * Returns if the specified amount of money can be taken out of the card
+     *
+     * @param amount
+     * @return whether or not this transaction would be approved
+     */
+    public boolean isPayableThroughChecking(double amount) {
+        if (balance > spendingLimit && amount < moneySource.getBalance()) {
             return true;
         }
         return false;
