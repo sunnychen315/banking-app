@@ -52,7 +52,7 @@ public class CheckingAccount implements Account {
      * @param amount
      */
     public void transfer(Account from, Account to, double amount) {
-        
+
     }
 
     /**

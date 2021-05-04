@@ -9,9 +9,9 @@ import java.util.ArrayList;
 public class SavingsAccount implements Account {
     private final int THRESHOLD = 1000;
     private double balance, interest;
-	private ArrayList<String> transactions;
-	
-	/**
+    private ArrayList<String> transactions;
+
+    /**
      * Constructor to update variables
      *
      * @param balance of the account
@@ -33,9 +33,9 @@ public class SavingsAccount implements Account {
      * @return interest
      */
     public double getInterest() {
-    	return this.interest;
+        return this.interest;
     }
-    
+
     /**
      * updates balance after withdraw
      */
@@ -46,12 +46,13 @@ public class SavingsAccount implements Account {
 
     /**
      * Transfers money to another account
+     *
      * @param from
      * @param to
      * @param amount
      */
     public void transfer(Account from, Account to, double amount) {
-    	//logic goes here
+        //logic goes here
     }
 
     /**
