@@ -22,7 +22,6 @@ public class LoginViewer extends BankViewer {
 
         addLoginPanel();
         addRegisterPanel();
-        
         this.setVisible(true);
     }
 
