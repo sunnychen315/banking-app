@@ -1,12 +1,12 @@
 package edu.sjsu;
 
-import edu.sjsu.view.LoginViewer;
+import edu.sjsu.view.AccountViewer;
 
 public class Tester {
-    public static void main(String[] args) {
-        new LoginViewer();
 
-        System.out.println("Hello");
-        System.out.println("Trial 2 - Hitayshi");
+    public static void main(String[] args) {
+        new AccountViewer();
+        // Click "account name" to go to login page
+        // Click "bank name" to go to home page
     }
 }
