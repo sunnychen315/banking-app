@@ -1,16 +1,23 @@
 package edu.sjsu.view;
 
+import edu.sjsu.messages.Message;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.concurrent.BlockingQueue;
 
+/**
+ * This is the main view that sets the background and connects to the different pages
+ */
 public class BankViewer extends JFrame {
 
+    BlockingQueue<Message> queue;
     JPanel topPanel;
     JLabel bankName;
 
-    public BankViewer() {
+    public BankViewer(BlockingQueue<Message> queue) {
 
         // Sets the characteristics of the JFrame
         this.getContentPane().setBackground(new Color(7, 63, 120));
@@ -67,7 +74,7 @@ public class BankViewer extends JFrame {
         bankName.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 BankViewer.this.dispose();
-                new HomeViewer();
+                new HomeViewer(queue);
             }
         });
     }
@@ -76,7 +83,7 @@ public class BankViewer extends JFrame {
         int input = JOptionPane.showConfirmDialog(null, "Do you wish to sign out?", "Sign Out", JOptionPane.YES_NO_OPTION);
         if (input == 0) {
             this.dispose();
-            new LoginViewer();
+            new LoginViewer(queue);
         }
         // else, do nothing
     }

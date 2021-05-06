@@ -1,6 +1,9 @@
 package edu.sjsu.messages;
 
-public class LoginMessage {
+/**
+ * message for logging in
+ */
+public class LoginMessage implements Message {
     String user;
     String password;
 

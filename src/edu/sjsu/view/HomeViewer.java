@@ -1,8 +1,11 @@
 package edu.sjsu.view;
 
+import edu.sjsu.messages.Message;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.util.concurrent.BlockingQueue;
 
 public class HomeViewer extends BankViewer {
 
@@ -11,10 +14,10 @@ public class HomeViewer extends BankViewer {
     JLabel savingsAmount;
     JLabel creditAmount;
 
-    public HomeViewer() {
+    public HomeViewer(BlockingQueue<Message> queue) {
 
         // Sets the characteristics of the JFrame
-        super();
+        super(queue);
         this.setTitle("Home Page");
 
         addAccountName();
