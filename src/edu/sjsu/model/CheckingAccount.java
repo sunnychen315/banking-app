@@ -56,6 +56,13 @@ public class CheckingAccount implements Account {
     }
 
     /**
+     * @return the transactions
+     */
+    public ArrayList<String> getTransactions() {
+        return transactions;
+    }
+
+    /**
      * deposits to checking account balance and updates balance
      */
     public void deposit(int amountToDeposit) {
