@@ -1,7 +1,12 @@
 package edu.sjsu.view;
 
+import edu.sjsu.messages.LoginMessage;
+import edu.sjsu.messages.Message;
+import edu.sjsu.messages.RegisterMessage;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.concurrent.BlockingQueue;
 
 public class LoginViewer extends BankViewer {
 
@@ -14,14 +19,38 @@ public class LoginViewer extends BankViewer {
     JPasswordField registerConfirmPassword;
     JButton registerButton;
 
-    public LoginViewer() {
+    public LoginViewer(BlockingQueue<Message> queue) {
 
         // Sets the characteristics of the JFrame
-        super();
+        super(queue);
         this.setTitle("Login Page");
 
         addLoginPanel();
         addRegisterPanel();
+
+        loginButton.addActionListener(e -> {
+            String user = loginUsername.getText();
+            String pass = String.valueOf(loginPassword.getPassword());
+            try {
+                Message msg = new LoginMessage(user, pass);
+                queue.put(msg);
+            } catch (InterruptedException exception) {
+                exception.printStackTrace();
+            }
+        });
+
+        registerButton.addActionListener(e -> {
+            String user = registerUsername.getText();
+            String pass = String.valueOf(registerPassword.getPassword());
+            String confirmedPass = String.valueOf(registerConfirmPassword.getPassword());
+            try {
+                queue.put(new RegisterMessage(user, pass, confirmedPass));
+            } catch (InterruptedException exception) {
+                exception.printStackTrace();
+            }
+        });
+
+
         this.setVisible(true);
     }
 
