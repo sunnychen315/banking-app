@@ -1,6 +1,7 @@
 package edu.sjsu.view;
 
 import edu.sjsu.messages.ConfirmDepositMessage;
+import edu.sjsu.messages.ConfirmTransferButton;
 import edu.sjsu.messages.ConfirmWithdrawMessage;
 import edu.sjsu.messages.Message;
 
@@ -12,6 +13,7 @@ import java.util.concurrent.BlockingQueue;
 public class CheckingsViewer extends BankViewer {
     JLabel depositAmount;
     JLabel withdrawAmount;
+    JLabel transferAmount;
     JLabel balanceAmount;
 
     public CheckingsViewer(BlockingQueue<Message> queue) {
@@ -19,9 +21,10 @@ public class CheckingsViewer extends BankViewer {
         this.setTitle("Checkings Account");
         this.setBackground(new Color(7, 63, 120));
         this.setVisible(true);
+        addBalancePanel();
         addDepositPanel();
         addWithdrawPanel();
-        addBalancePanel();
+        addTransferPanel();
 
     }
 
@@ -105,16 +108,52 @@ public class CheckingsViewer extends BankViewer {
         this.add(withdraw);
     }
 
+    public void addTransferPanel() {
+        JPanel transfer = new JPanel();
+        transfer.setBounds(11 * (this.getWidth() / 16), 5 * this.getHeight() / 12, this.getWidth() / 4, this.getHeight() / 3);
+        transfer.setSize(this.getWidth() / 4, this.getHeight() / 3);
+        transfer.setBorder(new EmptyBorder(10, 10, 10, 10));
+
+        JLabel transferText = new JLabel("Transfer to Savings");
+        transferText.setFont(new Font("Sans Serif", Font.BOLD, 30));
+        transferText.setForeground(Color.WHITE);
+        transferText.setVerticalAlignment(SwingConstants.TOP);
+        transferAmount = new JLabel("Amount to Transfer:");
+        transferAmount.setFont(new Font("Sans Serif", Font.BOLD, 15));
+        transferAmount.setForeground(Color.WHITE);
+        transferAmount.setVisible(true);
+        JTextField amount = new JTextField(5);
+        JButton confirm = new JButton("Confirm");
+
+        confirm.addActionListener(e -> {
+            double transferAmount = Double.parseDouble(amount.getText());
+            try {
+                Message msg = new ConfirmTransferButton(transferAmount);
+                queue.put(msg);
+            } catch (InterruptedException exception) {
+                exception.printStackTrace();
+            }
+        });
+
+
+        transfer.setLayout(new BoxLayout(transfer, BoxLayout.Y_AXIS));
+        transfer.add(transferText);
+        transfer.add(Box.createRigidArea(new Dimension(0, 60)));
+        transfer.add(transferAmount);
+        transfer.add(amount);
+        transfer.add(Box.createRigidArea(new Dimension(0, 100)));
+        transfer.add(confirm);
+        transfer.setBackground(new Color(160, 212, 226));
+        transfer.setVisible(true);
+        this.add(transfer);
+    }
+
     public void addBalancePanel() {
         JPanel balance = new JPanel();
-        balance.setBounds(11 * (this.getWidth() / 16), 5 * this.getHeight() / 12, this.getWidth() / 4, this.getHeight() / 3);
+        balance.setBounds((this.getWidth() / 16), this.getHeight() / 20, this.getWidth() / 4, this.getHeight() / 3);
         balance.setSize(this.getWidth() / 4, this.getHeight() / 3);
-        balance.setBorder(new EmptyBorder(10, 10, 10, 10));
+        balance.setBorder(new EmptyBorder(50, 10, 10, 10));
 
-        JLabel withdrawText = new JLabel("Balance");
-        withdrawText.setFont(new Font("Sans Serif", Font.BOLD, 30));
-        withdrawText.setForeground(Color.WHITE);
-        withdrawText.setVerticalAlignment(SwingConstants.TOP);
         balanceAmount = new JLabel("Checking's Balance:");
         balanceAmount.setFont(new Font("Sans Serif", Font.BOLD, 15));
         balanceAmount.setForeground(Color.WHITE);
@@ -123,7 +162,6 @@ public class CheckingsViewer extends BankViewer {
 
 
         balance.setLayout(new BoxLayout(balance, BoxLayout.Y_AXIS));
-        balance.add(withdrawText);
         balance.add(Box.createRigidArea(new Dimension(0, 60)));
         balance.add(balanceAmount);
         balance.add(amount);
