@@ -45,7 +45,6 @@ public class BankViewer extends JFrame {
         topPanel.setVisible(true);
 
         this.add(topPanel);
-
         this.setLayout(null);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

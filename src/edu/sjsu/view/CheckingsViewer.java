@@ -1,16 +1,21 @@
 package edu.sjsu.view;
 
+import edu.sjsu.messages.ConfirmDepositMessage;
+import edu.sjsu.messages.ConfirmWithdrawMessage;
+import edu.sjsu.messages.Message;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.util.concurrent.BlockingQueue;
 
 public class CheckingsViewer extends BankViewer {
-    JLabel depositamount;
-    JLabel withdrawamount;
-    JLabel balanceamount;
+    JLabel depositAmount;
+    JLabel withdrawAmount;
+    JLabel balanceAmount;
 
-    public CheckingsViewer() {
-        super();
+    public CheckingsViewer(BlockingQueue<Message> queue) {
+        super(queue);
         this.setTitle("Checkings Account");
         this.setBackground(new Color(7, 63, 120));
         this.setVisible(true);
@@ -31,17 +36,27 @@ public class CheckingsViewer extends BankViewer {
         depositText.setFont(new Font("Sans Serif", Font.BOLD, 30));
         depositText.setForeground(Color.WHITE);
         depositText.setVerticalAlignment(SwingConstants.TOP);
-        depositamount = new JLabel("Amount to Deposit:");
-        depositamount.setFont(new Font("Sans Serif", Font.BOLD, 15));
-        depositamount.setForeground(Color.WHITE);
-        depositamount.setVisible(true);
+        depositAmount = new JLabel("Amount to Deposit:");
+        depositAmount.setFont(new Font("Sans Serif", Font.BOLD, 15));
+        depositAmount.setForeground(Color.WHITE);
+        depositAmount.setVisible(true);
         JTextField amount = new JTextField(5);
         JButton confirm = new JButton("Confirm");
+
+        confirm.addActionListener(e -> {
+            double depositAmount = Double.parseDouble(amount.getText());
+            try {
+                Message msg = new ConfirmDepositMessage(depositAmount);
+                queue.put(msg);
+            } catch (InterruptedException exception) {
+                exception.printStackTrace();
+            }
+        });
 
         deposit.setLayout(new BoxLayout(deposit, BoxLayout.Y_AXIS));
         deposit.add(depositText);
         deposit.add(Box.createRigidArea(new Dimension(0, 60)));
-        deposit.add(depositamount);
+        deposit.add(depositAmount);
         deposit.add(amount);
         deposit.add(Box.createRigidArea(new Dimension(0, 100)));
         deposit.add(confirm);
@@ -60,17 +75,28 @@ public class CheckingsViewer extends BankViewer {
         withdrawText.setFont(new Font("Sans Serif", Font.BOLD, 30));
         withdrawText.setForeground(Color.WHITE);
         withdrawText.setVerticalAlignment(SwingConstants.TOP);
-        withdrawamount = new JLabel("Amount to Withdraw:");
-        withdrawamount.setFont(new Font("Sans Serif", Font.BOLD, 15));
-        withdrawamount.setForeground(Color.WHITE);
-        withdrawamount.setVisible(true);
+        withdrawAmount = new JLabel("Amount to Withdraw:");
+        withdrawAmount.setFont(new Font("Sans Serif", Font.BOLD, 15));
+        withdrawAmount.setForeground(Color.WHITE);
+        withdrawAmount.setVisible(true);
         JTextField amount = new JTextField(5);
         JButton confirm = new JButton("Confirm");
+
+        confirm.addActionListener(e -> {
+            double withdrawAmount = Double.parseDouble(amount.getText());
+            try {
+                Message msg = new ConfirmWithdrawMessage(withdrawAmount);
+                queue.put(msg);
+            } catch (InterruptedException exception) {
+                exception.printStackTrace();
+            }
+        });
+
 
         withdraw.setLayout(new BoxLayout(withdraw, BoxLayout.Y_AXIS));
         withdraw.add(withdrawText);
         withdraw.add(Box.createRigidArea(new Dimension(0, 60)));
-        withdraw.add(withdrawamount);
+        withdraw.add(withdrawAmount);
         withdraw.add(amount);
         withdraw.add(Box.createRigidArea(new Dimension(0, 100)));
         withdraw.add(confirm);
@@ -89,17 +115,17 @@ public class CheckingsViewer extends BankViewer {
         withdrawText.setFont(new Font("Sans Serif", Font.BOLD, 30));
         withdrawText.setForeground(Color.WHITE);
         withdrawText.setVerticalAlignment(SwingConstants.TOP);
-        balanceamount = new JLabel("Checking's Balance:");
-        balanceamount.setFont(new Font("Sans Serif", Font.BOLD, 15));
-        balanceamount.setForeground(Color.WHITE);
-        balanceamount.setVisible(true);
+        balanceAmount = new JLabel("Checking's Balance:");
+        balanceAmount.setFont(new Font("Sans Serif", Font.BOLD, 15));
+        balanceAmount.setForeground(Color.WHITE);
+        balanceAmount.setVisible(true);
         JLabel amount = new JLabel("insert total amount here");
 
 
         balance.setLayout(new BoxLayout(balance, BoxLayout.Y_AXIS));
         balance.add(withdrawText);
         balance.add(Box.createRigidArea(new Dimension(0, 60)));
-        balance.add(balanceamount);
+        balance.add(balanceAmount);
         balance.add(amount);
         balance.add(Box.createRigidArea(new Dimension(0, 110)));
         balance.setBackground(new Color(160, 212, 226));

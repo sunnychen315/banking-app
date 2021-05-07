@@ -7,6 +7,9 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.concurrent.BlockingQueue;
 
+/**
+ * This is the view for the home page that shows
+ */
 public class HomeViewer extends BankViewer {
 
     // instance variables
