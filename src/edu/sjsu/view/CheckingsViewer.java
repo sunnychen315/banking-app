@@ -10,12 +10,18 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.concurrent.BlockingQueue;
 
+/**
+ * this class lays out the view for the checking account page
+ */
 public class CheckingsViewer extends BankViewer {
     JLabel depositAmount;
     JLabel withdrawAmount;
     JLabel transferAmount;
     JLabel balanceAmount;
 
+    /**
+     * @param queue blocking queue storing the messages to be executed
+     */
     public CheckingsViewer(BlockingQueue<Message> queue) {
         super(queue);
         this.setTitle("Checkings Account");
@@ -29,6 +35,10 @@ public class CheckingsViewer extends BankViewer {
 
     }
 
+    /**
+     * this method contains the code for the deposit panel, as well as the action
+     * listener for the confirm button which adds a message to the blocking queue
+     */
     public void addDepositPanel() {
         JPanel deposit = new JPanel();
         deposit.setBounds(this.getWidth() / 16, 5 * this.getHeight() / 12, this.getWidth() / 4, this.getHeight() / 3);
@@ -69,6 +79,10 @@ public class CheckingsViewer extends BankViewer {
         this.add(deposit);
     }
 
+    /**
+     * this method contains the code for the withdraw panel, as well as the action
+     * listener for the confirm button which adds a message to the blocking queue
+     */
     public void addWithdrawPanel() {
         JPanel withdraw = new JPanel();
         withdraw.setBounds(6 * (this.getWidth() / 16), 5 * this.getHeight() / 12, this.getWidth() / 4, this.getHeight() / 3);
@@ -109,7 +123,10 @@ public class CheckingsViewer extends BankViewer {
         this.add(withdraw);
     }
 
-
+    /**
+     * this method contains the code for the transfer panel, as well as the action
+     * listener for the confirm button which adds a message to the blocking queue
+     */
     public void addTransferPanel() {
         JPanel transfer = new JPanel();
         transfer.setBounds(11 * (this.getWidth() / 16), 5 * this.getHeight() / 12, this.getWidth() / 4, this.getHeight() / 3);
@@ -150,6 +167,9 @@ public class CheckingsViewer extends BankViewer {
         this.add(transfer);
     }
 
+    /**
+     * this method contains the code that displays the current balance of the checking
+     */
     public void addBalancePanel() {
         JPanel balance = new JPanel();
         balance.setBounds((this.getWidth() / 16), this.getHeight() / 20, this.getWidth() / 4, this.getHeight() / 3);
