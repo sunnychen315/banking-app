@@ -51,7 +51,7 @@ public class BankViewer extends JFrame {
     }
 
     public void addAccountName() {
-        JLabel accountName = new JLabel("Account Name");
+        JLabel accountName = new JLabel("Login/Logout");
         accountName.setFont(new Font("Sans Serif", Font.BOLD, 30));
         accountName.setBounds(3 * (this.getWidth() / 4), this.getY() - 20, (this.getWidth() / 4) - 10, this.getHeight() / 6);
         accountName.setBackground(new Color(160, 212, 226));
