@@ -21,6 +21,7 @@ public class CheckingsViewer extends BankViewer {
         this.setTitle("Checkings Account");
         this.setBackground(new Color(7, 63, 120));
         this.setVisible(true);
+        addAccountName();
         addBalancePanel();
         addDepositPanel();
         addWithdrawPanel();
@@ -107,6 +108,7 @@ public class CheckingsViewer extends BankViewer {
         withdraw.setVisible(true);
         this.add(withdraw);
     }
+
 
     public void addTransferPanel() {
         JPanel transfer = new JPanel();
