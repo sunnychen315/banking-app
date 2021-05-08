@@ -5,6 +5,8 @@ import edu.sjsu.messages.Message;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.concurrent.BlockingQueue;
 
 /**
@@ -57,6 +59,12 @@ public class HomeViewer extends BankViewer {
         checkingText.setVerticalAlignment(SwingConstants.BOTTOM);
 
         JLabel checkingDetails = addDetails();
+
+        checkingDetails.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                new CheckingsViewer(queue);
+            }
+        });
 
         checkingAmount = new JLabel("$306");
         checkingAmount.setFont(new Font("Sans Serif", Font.BOLD, 75));
