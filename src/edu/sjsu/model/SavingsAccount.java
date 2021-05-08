@@ -56,6 +56,13 @@ public class SavingsAccount implements Account {
     }
 
     /**
+     * @return the transactions
+     */
+    public ArrayList<String> getTransactions() {
+        return transactions;
+    }
+
+    /**
      * deposits to savings account balance and updates balance
      */
     public void deposit(int amountToDeposit) {

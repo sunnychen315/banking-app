@@ -1,9 +1,17 @@
 package edu.sjsu.view;
 
+import edu.sjsu.messages.Message;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.concurrent.BlockingQueue;
 
+/**
+ * This is the view for the home page that shows
+ */
 public class HomeViewer extends BankViewer {
 
     // instance variables
@@ -11,10 +19,10 @@ public class HomeViewer extends BankViewer {
     JLabel savingsAmount;
     JLabel creditAmount;
 
-    public HomeViewer() {
+    public HomeViewer(BlockingQueue<Message> queue) {
 
         // Sets the characteristics of the JFrame
-        super();
+        super(queue);
         this.setTitle("Home Page");
 
         addAccountName();
@@ -51,6 +59,12 @@ public class HomeViewer extends BankViewer {
         checkingText.setVerticalAlignment(SwingConstants.BOTTOM);
 
         JLabel checkingDetails = addDetails();
+
+        checkingDetails.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                new CheckingsViewer(queue);
+            }
+        });
 
         checkingAmount = new JLabel("$306");
         checkingAmount.setFont(new Font("Sans Serif", Font.BOLD, 75));

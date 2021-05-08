@@ -1,16 +1,23 @@
 package edu.sjsu.view;
 
+import edu.sjsu.messages.Message;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.concurrent.BlockingQueue;
 
+/**
+ * This is the main view that sets the background and connects to the different pages
+ */
 public class BankViewer extends JFrame {
 
+    BlockingQueue<Message> queue;
     JPanel topPanel;
     JLabel bankName;
 
-    public BankViewer() {
+    public BankViewer(BlockingQueue<Message> queue) {
 
         // Sets the characteristics of the JFrame
         this.getContentPane().setBackground(new Color(7, 63, 120));
@@ -38,14 +45,13 @@ public class BankViewer extends JFrame {
         topPanel.setVisible(true);
 
         this.add(topPanel);
-
         this.setLayout(null);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     public void addAccountName() {
-        JLabel accountName = new JLabel("Account Name");
+        JLabel accountName = new JLabel("Login/Logout");
         accountName.setFont(new Font("Sans Serif", Font.BOLD, 30));
         accountName.setBounds(3 * (this.getWidth() / 4), this.getY() - 20, (this.getWidth() / 4) - 10, this.getHeight() / 6);
         accountName.setBackground(new Color(160, 212, 226));
@@ -67,7 +73,7 @@ public class BankViewer extends JFrame {
         bankName.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 BankViewer.this.dispose();
-                new HomeViewer();
+                new HomeViewer(queue);
             }
         });
     }
@@ -76,7 +82,7 @@ public class BankViewer extends JFrame {
         int input = JOptionPane.showConfirmDialog(null, "Do you wish to sign out?", "Sign Out", JOptionPane.YES_NO_OPTION);
         if (input == 0) {
             this.dispose();
-            new LoginViewer();
+            new LoginViewer(queue);
         }
         // else, do nothing
     }
