@@ -3,8 +3,11 @@ package edu.sjsu.controller;
 import edu.sjsu.messages.LoginMessage;
 import edu.sjsu.messages.Message;
 import edu.sjsu.messages.RegisterMessage;
+import edu.sjsu.messages.SignOutMessage;
 import edu.sjsu.model.User;
 import edu.sjsu.model.UserList;
+import edu.sjsu.view.BankViewer;
+import edu.sjsu.view.HomeViewer;
 import edu.sjsu.view.LoginViewer;
 
 import java.util.LinkedList;
@@ -17,6 +20,7 @@ public class BankController {
     private List<Valve> valves;
     private UserList users;
     private User selectedUser;
+    private BankViewer view;
 
     /**
      * Creates a Controller object
@@ -29,11 +33,12 @@ public class BankController {
         this.users = users;
         valves = new LinkedList<>();
 
-        new LoginViewer(queue);
+        view = new LoginViewer(queue);
 
         //valves
         valves.add(new LoginMessageValve());
         valves.add(new RegisterMessageValve());
+        valves.add(new SignOutMessageValve());
 
         mainLoop();
     }
@@ -92,6 +97,9 @@ public class BankController {
                     selectedUser = currentUser;
 
                     //TODO: additional view-related task
+                    view.dispose();
+                    view = new HomeViewer(queue);
+
                     System.out.println("logged in!");
                 }
             }
@@ -114,8 +122,27 @@ public class BankController {
             if (users.addUser(registerInfo.getUser(), registerInfo.getPassword(), registerInfo.getConfirmedPassword())) {
                 //log in with newly created user
                 selectedUser = users.get(users.size() - 1);
+                view.dispose();
+                view = new HomeViewer(queue);
+
                 System.out.println("created user!");
             }
+
+            return ValveMessage.EXECUTED;
+        }
+
+    }
+
+    private class SignOutMessageValve implements Valve {
+
+        @Override
+        public ValveMessage execute(Message message) {
+            //check if correct message
+            if (message.getClass() != SignOutMessage.class) {
+                return ValveMessage.MISS;
+            }
+            view.dispose();
+            view = new LoginViewer(queue);
 
             return ValveMessage.EXECUTED;
         }
