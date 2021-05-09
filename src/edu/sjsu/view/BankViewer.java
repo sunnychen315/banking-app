@@ -1,6 +1,8 @@
 package edu.sjsu.view;
 
+import edu.sjsu.messages.HomeMessage;
 import edu.sjsu.messages.Message;
+import edu.sjsu.messages.SignOutMessage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,6 +25,7 @@ public class BankViewer extends JFrame {
      * @param queue blocking queue storing the messages to be executed
      */
     public BankViewer(BlockingQueue<Message> queue) {
+        this.queue = queue;
 
         // Sets the state of the JFrame to full screen
         this.getContentPane().setBackground(new Color(7, 63, 120));
@@ -93,8 +96,12 @@ public class BankViewer extends JFrame {
     public void addHomeActionListener() {
         bankName.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                BankViewer.this.dispose();
-                new HomeViewer(queue);
+                try {
+                    Message msg = new HomeMessage();
+                    queue.put(msg);
+                } catch (InterruptedException exception) {
+                    exception.printStackTrace();
+                }
             }
         });
     }
@@ -106,8 +113,12 @@ public class BankViewer extends JFrame {
     public void signOut() {
         int input = JOptionPane.showConfirmDialog(null, "Do you wish to sign out?", "Sign Out", JOptionPane.YES_NO_OPTION);
         if (input == 0) {
-            this.dispose();
-            new LoginViewer(queue);
+            try {
+                Message msg = new SignOutMessage();
+                queue.put(msg);
+            } catch (InterruptedException exception) {
+                exception.printStackTrace();
+            }
         }
         // else, do nothing
     }

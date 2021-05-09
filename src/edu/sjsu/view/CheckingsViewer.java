@@ -34,6 +34,8 @@ public class CheckingsViewer extends BankViewer {
         addWithdrawPanel();
         addTransferPanel();
 
+        addHomeActionListener();
+
     }
 
     /**

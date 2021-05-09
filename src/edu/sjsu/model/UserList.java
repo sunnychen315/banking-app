@@ -17,10 +17,10 @@ public class UserList extends ArrayList<User> {
      */
     public boolean addUser(String userName, String password, String password2) {
 
-        if (!password.equals(password2)) {
+        if ((!password.equals(password2)) || password.length() == 0) {
             return false;
         }
-        if (this.validUsername(userName)) {
+        if ((this.validUsername(userName)) || userName.length() == 0) {
             return false;
         }
 
@@ -30,7 +30,7 @@ public class UserList extends ArrayList<User> {
     }
 
     /**
-     * this method checks if a uer exists
+     * this method checks if a user exists
      *
      * @param userName
      * @return

@@ -1,6 +1,8 @@
 package edu.sjsu.view;
 
+import edu.sjsu.messages.CheckingMessage;
 import edu.sjsu.messages.Message;
+import edu.sjsu.messages.SavingsMessage;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -76,7 +78,12 @@ public class HomeViewer extends BankViewer {
         // adds an action listener to create a new CheckingsViewer when "details" is clicked
         checkingDetails.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                new CheckingsViewer(queue);
+                try {
+                    Message msg = new CheckingMessage();
+                    queue.put(msg);
+                } catch (InterruptedException exception) {
+                    exception.printStackTrace();
+                }
             }
         });
 
@@ -120,9 +127,16 @@ public class HomeViewer extends BankViewer {
         JLabel savingsDetails = addDetails();
 
         // adds an action listener to create a new SavingsViewer when "details" is clicked
-        /*
-        TODO: ADD AN ACTION LISTENER HERE
-         */
+        savingsDetails.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    Message msg = new SavingsMessage();
+                    queue.put(msg);
+                } catch (InterruptedException exception) {
+                    exception.printStackTrace();
+                }
+            }
+        });
 
         // Sets the characteristics of the amount JLabel
         savingsAmount = new JLabel("$3402");
