@@ -33,6 +33,7 @@ public class SavingsViewer extends BankViewer {
         addWithdrawPanel();
         addTransferPanel();
 
+        addHomeActionListener();
     }
 
     /**
