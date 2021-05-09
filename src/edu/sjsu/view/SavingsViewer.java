@@ -13,7 +13,7 @@ import java.util.concurrent.BlockingQueue;
 /**
  * this class lays out the view for the checking account page
  */
-public class CheckingsViewer extends BankViewer {
+public class SavingsViewer extends BankViewer {
     JLabel depositAmount;
     JLabel withdrawAmount;
     JLabel transferAmount;
@@ -22,14 +22,13 @@ public class CheckingsViewer extends BankViewer {
     /**
      * @param queue blocking queue storing the messages to be executed
      */
-    public CheckingsViewer(BlockingQueue<Message> queue) {
+    public SavingsViewer(BlockingQueue<Message> queue) {
         super(queue);
-        this.setTitle("Checking's Account");
+        this.setTitle("Saving's Account");
         this.setBackground(new Color(7, 63, 120));
         this.setVisible(true);
         addAccountName();
         addBalancePanel();
-
         addDepositPanel();
         addWithdrawPanel();
         addTransferPanel();
@@ -75,7 +74,6 @@ public class CheckingsViewer extends BankViewer {
         deposit.add(amount);
         deposit.add(Box.createRigidArea(new Dimension(0, 100)));
         deposit.add(confirm);
-        deposit.add(Box.createRigidArea(new Dimension(0, 10)));
         deposit.setBackground(new Color(160, 212, 226));
         deposit.setVisible(true);
         this.add(deposit);
@@ -135,8 +133,8 @@ public class CheckingsViewer extends BankViewer {
         transfer.setSize(this.getWidth() / 4, this.getHeight() / 3);
         transfer.setBorder(new EmptyBorder(10, 10, 10, 10));
 
-        JLabel transferText = new JLabel("Transfer to Savings");
-        transferText.setFont(new Font("Sans Serif", Font.BOLD, 30));
+        JLabel transferText = new JLabel("Transfer to Checkings");
+        transferText.setFont(new Font("Sans Serif", Font.BOLD, 25));
         transferText.setForeground(Color.WHITE);
         transferText.setVerticalAlignment(SwingConstants.TOP);
         transferAmount = new JLabel("Amount to Transfer:");
@@ -176,11 +174,11 @@ public class CheckingsViewer extends BankViewer {
         JPanel b = new JPanel();
         b.setBounds(this.getWidth() / 16, 3 * this.getHeight() / 12, this.getWidth() / 4, this.getHeight() / 6);
         b.setSize(this.getWidth() / 4, this.getHeight() / 8);
-        JLabel balance = new JLabel("Checking's Balance:");
+        JLabel balance = new JLabel("Saving's Balance:");
         balance.setFont(new Font("Sans Serif", Font.BOLD, 20));
         balance.setForeground(Color.WHITE);
         balance.setVisible(true);
-        JLabel balanceAmount = new JLabel("$500");
+        JLabel balanceAmount = new JLabel("$300");
         balanceAmount.setFont(new Font("Sans Serif", Font.BOLD, 30));
         b.setBackground(new Color(160, 212, 226));
         b.setVisible(true);
@@ -192,7 +190,6 @@ public class CheckingsViewer extends BankViewer {
 
         b.setVisible(true);
         this.add(b);
-
     }
 
 
