@@ -1,9 +1,6 @@
 package edu.sjsu.controller;
 
-import edu.sjsu.messages.LoginMessage;
-import edu.sjsu.messages.Message;
-import edu.sjsu.messages.RegisterMessage;
-import edu.sjsu.messages.SignOutMessage;
+import edu.sjsu.messages.*;
 import edu.sjsu.model.User;
 import edu.sjsu.model.UserList;
 import edu.sjsu.view.BankViewer;
@@ -39,6 +36,7 @@ public class BankController {
         valves.add(new LoginMessageValve());
         valves.add(new RegisterMessageValve());
         valves.add(new SignOutMessageValve());
+        valves.add(new HomeMessageValve());
 
         mainLoop();
     }
@@ -149,4 +147,18 @@ public class BankController {
 
     }
 
+    private class HomeMessageValve implements Valve {
+
+        @Override
+        public ValveMessage execute(Message message) {
+            //check if correct message
+            if (message.getClass() != HomeMessage.class) {
+                return ValveMessage.MISS;
+            }
+            view.dispose();
+            view = new HomeViewer(queue);
+
+            return ValveMessage.EXECUTED;
+        }
+    }
 }
