@@ -1,6 +1,8 @@
 package edu.sjsu;
 
+import edu.sjsu.controller.BankController;
 import edu.sjsu.messages.Message;
+import edu.sjsu.model.UserList;
 import edu.sjsu.view.AccountViewer;
 
 import java.util.concurrent.BlockingQueue;
@@ -13,6 +15,8 @@ public class Tester {
         new AccountViewer(queue);
         // new CheckingsViewer(queue);
         // Click "account name" to go to login page
-        // Click "bank name" to go to home page
+
+        UserList users = new UserList();
+        new BankController(queue, users);
     }
 }

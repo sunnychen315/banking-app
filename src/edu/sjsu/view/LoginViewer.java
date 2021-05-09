@@ -8,6 +8,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.concurrent.BlockingQueue;
 
+/**
+ * This is the class that displays the login screen
+ */
 public class LoginViewer extends BankViewer {
 
     // instance variables
@@ -19,15 +22,22 @@ public class LoginViewer extends BankViewer {
     JPasswordField registerConfirmPassword;
     JButton registerButton;
 
+    /**
+     * This is the constructor for the LoginViewer class that will display the login screen
+     *
+     * @param queue blocking queue storing the messages to be executed
+     */
     public LoginViewer(BlockingQueue<Message> queue) {
 
-        // Sets the characteristics of the JFrame
+        // Calls the constructor of BankViewer to get the screen's basic layout
         super(queue);
         this.setTitle("Login Page");
 
+        // adds the login and register panels to the JFrame
         addLoginPanel();
         addRegisterPanel();
 
+        // adds the action listener to the login button to add a login message to the blocking queue
         loginButton.addActionListener(e -> {
             String user = loginUsername.getText();
             String pass = String.valueOf(loginPassword.getPassword());
@@ -39,6 +49,7 @@ public class LoginViewer extends BankViewer {
             }
         });
 
+        // adds the action listener to the register button to add a register message to the blocking queue
         registerButton.addActionListener(e -> {
             String user = registerUsername.getText();
             String pass = String.valueOf(registerPassword.getPassword());
@@ -50,11 +61,14 @@ public class LoginViewer extends BankViewer {
             }
         });
 
-
         this.setVisible(true);
     }
 
+    /**
+     * This method adds a panel that manages the user's login information
+     */
     public void addLoginPanel() {
+        // creates the login panel and sets its characteristics
         JPanel loginPanel = new JPanel();
         loginPanel.setBounds(this.getWidth() / 8, this.getHeight() / 3, this.getWidth() / 3, this.getHeight() / 2);
         loginPanel.setSize(this.getWidth() / 3, this.getHeight() / 2);
@@ -63,6 +77,7 @@ public class LoginViewer extends BankViewer {
         c.fill = GridBagConstraints.NONE;
         c.anchor = GridBagConstraints.WEST;
 
+        // creates the components to be added into the login panel
         JLabel loginText = new JLabel("Login");
         loginText.setFont(new Font("Sans Serif", Font.BOLD, 25));
         loginText.setForeground(Color.WHITE);
@@ -72,6 +87,7 @@ public class LoginViewer extends BankViewer {
         loginPassword = new JPasswordField(15);
         loginButton = new JButton("Login");
 
+        // modifies the coordinates of the GridBagLayout and adds the components accordingly
         c.gridx = 0;
         c.gridy = 1;
         c.weighty = 1;
@@ -97,7 +113,11 @@ public class LoginViewer extends BankViewer {
         this.setLayout(null);
     }
 
+    /**
+     * This method adds a panel that manages the user's registration information
+     */
     public void addRegisterPanel() {
+        // creates the register panel and sets its characteristics
         JPanel registerPanel = new JPanel();
         registerPanel.setBounds((13 * this.getWidth() / 24), this.getHeight() / 3, this.getWidth() / 3, this.getHeight() / 2);
         registerPanel.setSize(this.getWidth() / 3, this.getHeight() / 2);
@@ -106,6 +126,7 @@ public class LoginViewer extends BankViewer {
         g.fill = GridBagConstraints.NONE;
         g.anchor = GridBagConstraints.WEST;
 
+        // creates the components to be added into the register panel
         JLabel registerText = new JLabel("Register");
         registerText.setFont(new Font("Sans Serif", Font.BOLD, 25));
         registerText.setForeground(Color.WHITE);
@@ -117,6 +138,7 @@ public class LoginViewer extends BankViewer {
         registerConfirmPassword = new JPasswordField(15);
         registerButton = new JButton("Register");
 
+        // modifies the coordinates of the GridBagLayout and adds the components accordingly
         g.gridx = 0;
         g.gridy = 1;
         g.weighty = 1;
