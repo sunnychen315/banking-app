@@ -1,7 +1,6 @@
 package edu.sjsu.view;
 
 import edu.sjsu.messages.ConfirmDepositMessage;
-import edu.sjsu.messages.ConfirmTransferButton;
 import edu.sjsu.messages.ConfirmWithdrawMessage;
 import edu.sjsu.messages.Message;
 
@@ -149,7 +148,7 @@ public class SavingsViewer extends BankViewer {
         confirm.addActionListener(e -> {
             double transferAmount = Double.parseDouble(amount.getText());
             try {
-                Message msg = new ConfirmTransferButton(transferAmount);
+                Message msg = new ConfirmTransferMessage(transferAmount);
                 queue.put(msg);
             } catch (InterruptedException exception) {
                 exception.printStackTrace();
