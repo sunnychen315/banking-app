@@ -26,7 +26,7 @@ public class CheckingsViewer extends BankViewer {
         super(queue);
         this.setTitle("Checking's Account");
         this.setBackground(new Color(7, 63, 120));
-        this.setVisible(true);
+
         addAccountName();
         addBalancePanel();
 
@@ -36,6 +36,7 @@ public class CheckingsViewer extends BankViewer {
 
         addHomeActionListener();
 
+        this.setVisible(true);
     }
 
     /**

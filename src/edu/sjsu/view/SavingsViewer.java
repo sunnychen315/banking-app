@@ -24,16 +24,17 @@ public class SavingsViewer extends BankViewer {
      */
     public SavingsViewer(BlockingQueue<Message> queue) {
         super(queue);
-        this.setTitle("Saving's Account");
+        this.setTitle("Savings Account");
         this.setBackground(new Color(7, 63, 120));
-        this.setVisible(true);
+
         addAccountName();
         addBalancePanel();
         addDepositPanel();
         addWithdrawPanel();
         addTransferPanel();
-
         addHomeActionListener();
+
+        this.setVisible(true);
     }
 
     /**
@@ -134,7 +135,7 @@ public class SavingsViewer extends BankViewer {
         transfer.setSize(this.getWidth() / 4, this.getHeight() / 3);
         transfer.setBorder(new EmptyBorder(10, 10, 10, 10));
 
-        JLabel transferText = new JLabel("Transfer to Checkings");
+        JLabel transferText = new JLabel("Transfer to Checking");
         transferText.setFont(new Font("Sans Serif", Font.BOLD, 25));
         transferText.setForeground(Color.WHITE);
         transferText.setVerticalAlignment(SwingConstants.TOP);
@@ -175,7 +176,7 @@ public class SavingsViewer extends BankViewer {
         JPanel b = new JPanel();
         b.setBounds(this.getWidth() / 16, 3 * this.getHeight() / 12, this.getWidth() / 4, this.getHeight() / 6);
         b.setSize(this.getWidth() / 4, this.getHeight() / 8);
-        JLabel balance = new JLabel("Saving's Balance:");
+        JLabel balance = new JLabel("Savings Balance:");
         balance.setFont(new Font("Sans Serif", Font.BOLD, 20));
         balance.setForeground(Color.WHITE);
         balance.setVisible(true);
