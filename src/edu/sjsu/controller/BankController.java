@@ -186,6 +186,7 @@ public class BankController {
             return ValveMessage.EXECUTED;
         }
     }
+
     private class CreditMessageValve implements Valve {
 
         @Override

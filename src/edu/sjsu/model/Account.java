@@ -5,6 +5,8 @@ package edu.sjsu.model;
  */
 public interface Account {
     public double getBalance();
+
     public double getInterest();
+
     public void withdraw(double amount);
 }
