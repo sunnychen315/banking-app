@@ -1,5 +1,6 @@
 package edu.sjsu.view;
 
+import edu.sjsu.messages.CheckingMessage;
 import edu.sjsu.messages.Message;
 
 import javax.swing.*;
@@ -76,7 +77,12 @@ public class HomeViewer extends BankViewer {
         // adds an action listener to create a new CheckingsViewer when "details" is clicked
         checkingDetails.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                new CheckingsViewer(queue);
+                try {
+                    Message msg = new CheckingMessage();
+                    queue.put(msg);
+                } catch (InterruptedException exception) {
+                    exception.printStackTrace();
+                }
             }
         });
 
