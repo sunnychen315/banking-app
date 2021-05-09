@@ -109,8 +109,6 @@ public class LoginViewer extends BankViewer {
 
         loginPanel.setVisible(true);
         this.add(loginPanel);
-
-        this.setLayout(null);
     }
 
     /**
@@ -165,7 +163,5 @@ public class LoginViewer extends BankViewer {
 
         registerPanel.setVisible(true);
         this.add(registerPanel);
-
-        this.setLayout(null);
     }
 }

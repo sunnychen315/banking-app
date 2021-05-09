@@ -59,7 +59,6 @@ public class BankViewer extends JFrame {
         // adds the topPanel to the JFrame
         this.add(topPanel);
         this.setLayout(null);
-        this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
@@ -71,7 +70,7 @@ public class BankViewer extends JFrame {
         // Creates a JLabel for the login/logout message and sets its characteristics
         JLabel accountName = new JLabel("Login/Logout");
         accountName.setFont(new Font("Sans Serif", Font.BOLD, 30));
-        accountName.setBounds(3 * (this.getWidth() / 4), this.getY() - 20, (this.getWidth() / 4) - 10, this.getHeight() / 6);
+        accountName.setBounds(3 * (this.getWidth() / 4), this.getY() - 30, (this.getWidth() / 4) - 10, this.getHeight() / 6);
         accountName.setBackground(new Color(160, 212, 226));
         accountName.setForeground(Color.WHITE);
         accountName.setHorizontalAlignment(SwingConstants.RIGHT);
