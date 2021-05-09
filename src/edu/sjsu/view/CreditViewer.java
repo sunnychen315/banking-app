@@ -41,6 +41,8 @@ public class CreditViewer extends BankViewer {
         balanceAmount.setVisible(true);
 
         JLabel amountToPay = new JLabel("Enter the amount you would like to pay off");
+        amountToPay.setFont(new Font("Sans Serif", Font.BOLD, 15));
+        amountToPay.setForeground(Color.WHITE);
         JTextField amount = new JTextField(5);
         StylishButton confirmPay = new StylishButton("Pay");
 
