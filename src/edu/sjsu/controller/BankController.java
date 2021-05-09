@@ -14,7 +14,6 @@ public class BankController {
     private BlockingQueue<Message> queue;
     private List<Valve> valves;
     private UserList users;
-    private User selectedUser;
     private BankViewer view;
 
     /**
@@ -92,9 +91,6 @@ public class BankController {
             if (currentUser != null) {
                 //Check if passwords match
                 if (currentUser.getPassword().equals(loginInfo.getPassword()) && currentUser.getPassword().length() != 0) {
-                    selectedUser = currentUser;
-
-                    //TODO: additional view-related task
                     view.dispose();
                     view = new HomeViewer(queue);
 
@@ -119,7 +115,6 @@ public class BankController {
             //Validity checks are done through UserList
             if (users.addUser(registerInfo.getUser(), registerInfo.getPassword(), registerInfo.getConfirmedPassword())) {
                 //log in with newly created user
-                selectedUser = users.get(users.size() - 1);
                 view.dispose();
                 view = new HomeViewer(queue);
 
@@ -187,6 +182,20 @@ public class BankController {
             }
             view.dispose();
             view = new SavingsViewer(queue);
+
+            return ValveMessage.EXECUTED;
+        }
+    }
+    private class CreditMessageValve implements Valve {
+
+        @Override
+        public ValveMessage execute(Message message) {
+            //check if correct message
+            if (message.getClass() != CreditsMessage.class) {
+                return ValveMessage.MISS;
+            }
+            view.dispose();
+            view = new CreditViewer(queue);
 
             return ValveMessage.EXECUTED;
         }
