@@ -15,8 +15,8 @@ public class Credit implements Account {
      * Constructor to update variables
      */
     public Credit(CheckingAccount source, double interest) {
-        this.balance = 0;
         this.interest = interest;
+        this.balance = 0 + interest;
         transactions = new ArrayList<>();
         moneySource = source;
     }
@@ -35,33 +35,32 @@ public class Credit implements Account {
         return this.interest;
     }
 
+    public void withdraw(double amount) {
+        //do we need this bc you cant withdraw from a credit card
+    }
+
     /**
      * updates balance after withdraw
      */
-    public void withdraw(double amountToWithdraw) {
-        this.balance -= amountToWithdraw;
-        transactions.add("Withdrew $" + amountToWithdraw);
+    public void payCreditCardBill(double amountToPay) {
+        if (amountToPay <= balance && isPayableThroughChecking()) {
+            double checkingsBalance = moneySource.getBalance();
+            checkingsBalance -= amountToPay;
+            this.balance -= amountToPay;
+        }
+
+
+        transactions.add("Paid $" + amountToPay);
     }
 
-    /**
-     * Transfers money to another account
-     *
-     * @param from
-     * @param to
-     * @param amount
-     */
-    public void transfer(Account from, Account to, double amount) {
-        //logic goes here
-    }
 
     /**
-     * Returns if the specified amount of money can be taken out of the card
+     * Returns if the specified balance of money owed can be paid by the checkings account
      *
-     * @param amount
      * @return whether or not this transaction would be approved
      */
-    public boolean isPayableThroughChecking(double amount) {
-        if (balance > spendingLimit && amount < moneySource.getBalance()) {
+    public boolean isPayableThroughChecking() {
+        if (balance <= moneySource.getBalance()) {
             return true;
         }
         return false;
