@@ -36,6 +36,7 @@ public class BankController {
         valves.add(new HomeMessageValve());
         valves.add(new CheckingMessageValve());
         valves.add(new SavingsMessageValve());
+        valves.add(new CreditMessageValve());
 
         mainLoop();
     }
