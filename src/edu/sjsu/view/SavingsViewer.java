@@ -1,6 +1,5 @@
 package edu.sjsu.view;
 
-import edu.sjsu.assets.StylishButton;
 import edu.sjsu.messages.ConfirmDepositMessage;
 import edu.sjsu.messages.ConfirmTransferMessage;
 import edu.sjsu.messages.ConfirmWithdrawMessage;
@@ -71,7 +70,7 @@ public class SavingsViewer extends BankViewer {
         depositAmount.setForeground(Color.WHITE);
         depositAmount.setVisible(true);
         JTextField amount = new JTextField(5);
-        StylishButton confirm = new StylishButton("Confirm");
+        JButton confirm = new JButton("Confirm");
 
         confirm.addActionListener(e -> {
             double depositAmount = Double.parseDouble(amount.getText());
@@ -114,7 +113,7 @@ public class SavingsViewer extends BankViewer {
         withdrawAmount.setForeground(Color.WHITE);
         withdrawAmount.setVisible(true);
         JTextField amount = new JTextField(5);
-        StylishButton confirm = new StylishButton("Confirm");
+        JButton confirm = new JButton("Confirm");
 
         confirm.addActionListener(e -> {
             double withdrawAmount = Double.parseDouble(amount.getText());
@@ -158,7 +157,7 @@ public class SavingsViewer extends BankViewer {
         transferAmount.setForeground(Color.WHITE);
         transferAmount.setVisible(true);
         JTextField amount = new JTextField(5);
-        StylishButton confirm = new StylishButton("Confirm");
+        JButton confirm = new JButton("Confirm");
 
         confirm.addActionListener(e -> {
             double transferAmount = Double.parseDouble(amount.getText());

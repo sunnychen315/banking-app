@@ -15,6 +15,7 @@ public class BankController {
     private List<Valve> valves;
     private UserList users;
     private BankViewer view;
+    private User selectedUser;
 
     /**
      * Creates a Controller object
@@ -92,6 +93,8 @@ public class BankController {
             if (currentUser != null) {
                 //Check if passwords match
                 if (currentUser.getPassword().equals(loginInfo.getPassword()) && currentUser.getPassword().length() != 0) {
+                    selectedUser = currentUser;
+
                     view.dispose();
                     view = new HomeViewer(queue, selectedUser);
 
@@ -116,6 +119,8 @@ public class BankController {
             //Validity checks are done through UserList
             if (users.addUser(registerInfo.getUser(), registerInfo.getPassword(), registerInfo.getConfirmedPassword())) {
                 //log in with newly created user
+                selectedUser = users.get(users.size() - 1);
+
                 view.dispose();
                 view = new HomeViewer(queue, selectedUser);
 
@@ -197,7 +202,7 @@ public class BankController {
                 return ValveMessage.MISS;
             }
             view.dispose();
-            view = new CreditViewer(queue);
+            view = new CreditViewer(queue, selectedUser);
 
             return ValveMessage.EXECUTED;
         }

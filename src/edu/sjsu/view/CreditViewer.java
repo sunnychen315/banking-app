@@ -1,8 +1,10 @@
 package edu.sjsu.view;
 
-import edu.sjsu.assets.StylishButton;
 import edu.sjsu.messages.ConfirmCreditCardPaymentMessage;
 import edu.sjsu.messages.Message;
+import edu.sjsu.model.Account;
+import edu.sjsu.model.Credit;
+import edu.sjsu.model.User;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -11,10 +13,19 @@ import java.util.concurrent.BlockingQueue;
 
 public class CreditViewer extends BankViewer {
 
-    public CreditViewer(BlockingQueue<Message> queue) {
+    User user;
+    Credit ccAccount;
+
+    public CreditViewer(BlockingQueue<Message> queue, User user) {
         super(queue);
         this.setTitle("Credit Card Account");
         this.setBackground(new Color(7, 63, 120));
+        this.user = user;
+        for (Account a : user.getAccounts()) {
+            if (a.getClass() == Credit.class) {
+                ccAccount = (Credit) a;
+            }
+        }
 
         //adds login/logout
         addAccountName();
@@ -35,21 +46,21 @@ public class CreditViewer extends BankViewer {
         balance.setForeground(Color.WHITE);
         balance.setVerticalAlignment(SwingConstants.TOP);
 
-        JLabel balanceAmount = new JLabel("$500");
+        JLabel balanceAmount = new JLabel("$" + df.format(ccAccount.getBalance()));
         balanceAmount.setFont(new Font("Sans Serif", Font.BOLD, 30));
-        balanceAmount.setForeground(Color.RED);
+        balanceAmount.setForeground(new Color(196, 30, 58));
         balanceAmount.setVisible(true);
 
         JLabel amountToPay = new JLabel("Enter the amount you would like to pay off");
         amountToPay.setFont(new Font("Sans Serif", Font.BOLD, 15));
         amountToPay.setForeground(Color.WHITE);
         JTextField amount = new JTextField(5);
-        StylishButton confirmPay = new StylishButton("Pay");
+        JButton confirmPay = new JButton("Pay");
 
         confirmPay.addActionListener(e -> {
-            double payAmmount = Double.parseDouble(amount.getText());
+            double payAmount = Double.parseDouble(amount.getText());
             try {
-                Message msg = new ConfirmCreditCardPaymentMessage(payAmmount);
+                Message msg = new ConfirmCreditCardPaymentMessage(payAmount);
                 queue.put(msg);
             } catch (InterruptedException exception) {
                 exception.printStackTrace();
