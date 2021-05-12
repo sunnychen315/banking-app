@@ -4,6 +4,7 @@ import edu.sjsu.messages.CheckingMessage;
 import edu.sjsu.messages.CreditsMessage;
 import edu.sjsu.messages.Message;
 import edu.sjsu.messages.SavingsMessage;
+import edu.sjsu.model.*;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -22,17 +23,34 @@ public class HomeViewer extends BankViewer {
     JLabel savingsAmount;
     JLabel creditAmount;
 
+    User user;
+    CheckingAccount cAccount;
+    SavingsAccount sAccount;
+    Credit ccAccount;
+
     /**
      * This is the constructor for the HomeViewer class
      *
      * @param queue blocking queue storing the messages to be executed
      */
-    public HomeViewer(BlockingQueue<Message> queue) {
+    public HomeViewer(BlockingQueue<Message> queue, User user) {
 
         // Calls the constructor of BankViewer to get the screen's basic layout
         super(queue);
         this.setTitle("Home Page");
 
+        this.user = user;
+        for (Account a : user.getAccounts()) {
+            if (a.getClass() == CheckingAccount.class) {
+                cAccount = (CheckingAccount) a;
+            }
+            if (a.getClass() == SavingsAccount.class) {
+                sAccount = (SavingsAccount) a;
+            }
+            if (a.getClass() == Credit.class) {
+                ccAccount = (Credit) a;
+            }
+        }
         // adds the login/logout message to the top of the screen
         addAccountName();
 
@@ -89,8 +107,8 @@ public class HomeViewer extends BankViewer {
         });
 
         // Sets the characteristics of the amount JLabel
-        checkingAmount = new JLabel("$306");
-        checkingAmount.setFont(new Font("Sans Serif", Font.BOLD, 75));
+        checkingAmount = new JLabel("$" + df.format(cAccount.getBalance()));
+        checkingAmount.setFont(new Font("Sans Serif", Font.BOLD, 50));
         checkingAmount.setForeground(Color.WHITE);
         checkingAmount.setHorizontalAlignment(SwingConstants.CENTER);
         checkingAmount.setVerticalAlignment(SwingConstants.CENTER);
@@ -140,8 +158,8 @@ public class HomeViewer extends BankViewer {
         });
 
         // Sets the characteristics of the amount JLabel
-        savingsAmount = new JLabel("$3402");
-        savingsAmount.setFont(new Font("Sans Serif", Font.BOLD, 75));
+        savingsAmount = new JLabel("$" + df.format(sAccount.getBalance()));
+        savingsAmount.setFont(new Font("Sans Serif", Font.BOLD, 50));
         savingsAmount.setForeground(Color.WHITE);
         savingsAmount.setHorizontalAlignment(SwingConstants.CENTER);
         savingsAmount.setVerticalAlignment(SwingConstants.CENTER);
@@ -191,8 +209,8 @@ public class HomeViewer extends BankViewer {
         });
 
         // Sets the characteristics of the amount JLabel
-        creditAmount = new JLabel("$12.50");
-        creditAmount.setFont(new Font("Sans Serif", Font.BOLD, 75));
+        creditAmount = new JLabel("$" + df.format(ccAccount.getBalance()));
+        creditAmount.setFont(new Font("Sans Serif", Font.BOLD, 50));
         creditAmount.setForeground(new Color(196, 30, 58));
         creditAmount.setHorizontalAlignment(SwingConstants.CENTER);
         creditAmount.setVerticalAlignment(SwingConstants.CENTER);

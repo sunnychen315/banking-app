@@ -15,6 +15,7 @@ public class BankController {
     private List<Valve> valves;
     private UserList users;
     private BankViewer view;
+    private User selectedUser;
 
     /**
      * Creates a Controller object
@@ -92,8 +93,10 @@ public class BankController {
             if (currentUser != null) {
                 //Check if passwords match
                 if (currentUser.getPassword().equals(loginInfo.getPassword()) && currentUser.getPassword().length() != 0) {
+                    selectedUser = currentUser;
+
                     view.dispose();
-                    view = new HomeViewer(queue);
+                    view = new HomeViewer(queue, selectedUser);
 
                     System.out.println("logged in!");
                 }
@@ -116,8 +119,10 @@ public class BankController {
             //Validity checks are done through UserList
             if (users.addUser(registerInfo.getUser(), registerInfo.getPassword(), registerInfo.getConfirmedPassword())) {
                 //log in with newly created user
+                selectedUser = users.get(users.size() - 1);
+
                 view.dispose();
-                view = new HomeViewer(queue);
+                view = new HomeViewer(queue, selectedUser);
 
                 System.out.println("created user!");
             }
@@ -152,7 +157,7 @@ public class BankController {
                 return ValveMessage.MISS;
             }
             view.dispose();
-            view = new HomeViewer(queue);
+            view = new HomeViewer(queue, selectedUser);
 
             return ValveMessage.EXECUTED;
         }
@@ -167,7 +172,7 @@ public class BankController {
                 return ValveMessage.MISS;
             }
             view.dispose();
-            view = new CheckingsViewer(queue);
+            view = new CheckingsViewer(queue, selectedUser);
 
             return ValveMessage.EXECUTED;
         }
@@ -182,7 +187,7 @@ public class BankController {
                 return ValveMessage.MISS;
             }
             view.dispose();
-            view = new SavingsViewer(queue);
+            view = new SavingsViewer(queue, selectedUser);
 
             return ValveMessage.EXECUTED;
         }
@@ -197,7 +202,7 @@ public class BankController {
                 return ValveMessage.MISS;
             }
             view.dispose();
-            view = new CreditViewer(queue);
+            view = new CreditViewer(queue, selectedUser);
 
             return ValveMessage.EXECUTED;
         }

@@ -1,6 +1,5 @@
 package edu.sjsu.view;
 
-import edu.sjsu.assets.StylishButton;
 import edu.sjsu.messages.LoginMessage;
 import edu.sjsu.messages.Message;
 import edu.sjsu.messages.RegisterMessage;
@@ -17,11 +16,11 @@ public class LoginViewer extends BankViewer {
     // instance variables
     JTextField loginUsername;
     JPasswordField loginPassword;
-    StylishButton loginButton;
+    JButton loginButton;
     JTextField registerUsername;
     JPasswordField registerPassword;
     JPasswordField registerConfirmPassword;
-    StylishButton registerButton;
+    JButton registerButton;
 
     /**
      * This is the constructor for the LoginViewer class that will display the login screen
@@ -40,10 +39,10 @@ public class LoginViewer extends BankViewer {
 
         // adds the action listener to the login button to add a login message to the blocking queue
         loginButton.addActionListener(e -> {
-            String user = loginUsername.getText();
+            String username = loginUsername.getText();
             String pass = String.valueOf(loginPassword.getPassword());
             try {
-                Message msg = new LoginMessage(user, pass);
+                Message msg = new LoginMessage(username, pass);
                 queue.put(msg);
             } catch (InterruptedException exception) {
                 exception.printStackTrace();
@@ -52,11 +51,11 @@ public class LoginViewer extends BankViewer {
 
         // adds the action listener to the register button to add a register message to the blocking queue
         registerButton.addActionListener(e -> {
-            String user = registerUsername.getText();
+            String username = registerUsername.getText();
             String pass = String.valueOf(registerPassword.getPassword());
             String confirmedPass = String.valueOf(registerConfirmPassword.getPassword());
             try {
-                queue.put(new RegisterMessage(user, pass, confirmedPass));
+                queue.put(new RegisterMessage(username, pass, confirmedPass));
             } catch (InterruptedException exception) {
                 exception.printStackTrace();
             }
@@ -86,7 +85,7 @@ public class LoginViewer extends BankViewer {
         JLabel userPass = new JLabel("Password:                 ");
         loginUsername = new JTextField(15);
         loginPassword = new JPasswordField(15);
-        loginButton = new StylishButton("Login");
+        loginButton = new JButton("Login");
 
         // modifies the coordinates of the GridBagLayout and adds the components accordingly
         c.gridx = 0;
@@ -135,7 +134,7 @@ public class LoginViewer extends BankViewer {
         registerUsername = new JTextField(15);
         registerPassword = new JPasswordField(15);
         registerConfirmPassword = new JPasswordField(15);
-        registerButton = new StylishButton("Register");
+        registerButton = new JButton("Register");
 
         // modifies the coordinates of the GridBagLayout and adds the components accordingly
         g.gridx = 0;

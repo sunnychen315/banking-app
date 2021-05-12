@@ -1,10 +1,12 @@
 package edu.sjsu.view;
 
-import edu.sjsu.assets.StylishButton;
 import edu.sjsu.messages.ConfirmDepositMessage;
 import edu.sjsu.messages.ConfirmTransferMessage;
 import edu.sjsu.messages.ConfirmWithdrawMessage;
 import edu.sjsu.messages.Message;
+import edu.sjsu.model.Account;
+import edu.sjsu.model.CheckingAccount;
+import edu.sjsu.model.User;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -19,12 +21,20 @@ public class CheckingsViewer extends BankViewer {
     JLabel withdrawAmount;
     JLabel transferAmount;
     JLabel balanceAmount;
+    User user;
+    CheckingAccount cAccount;
 
     /**
      * @param queue blocking queue storing the messages to be executed
      */
-    public CheckingsViewer(BlockingQueue<Message> queue) {
+    public CheckingsViewer(BlockingQueue<Message> queue, User user) {
         super(queue);
+        this.user = user;
+        for (Account a : user.getAccounts()) {
+            if (a.getClass() == CheckingAccount.class) {
+                cAccount = (CheckingAccount) a;
+            }
+        }
         this.setTitle("Checking's Account");
         this.setBackground(new Color(7, 63, 120));
 
@@ -60,7 +70,7 @@ public class CheckingsViewer extends BankViewer {
         depositAmount.setForeground(Color.WHITE);
         depositAmount.setVisible(true);
         JTextField amount = new JTextField(5);
-        StylishButton confirm = new StylishButton("Confirm");
+        JButton confirm = new JButton("Confirm");
 
         confirm.addActionListener(e -> {
             double depositAmount = Double.parseDouble(amount.getText());
@@ -104,7 +114,7 @@ public class CheckingsViewer extends BankViewer {
         withdrawAmount.setForeground(Color.WHITE);
         withdrawAmount.setVisible(true);
         JTextField amount = new JTextField(5);
-        StylishButton confirm = new StylishButton("Confirm");
+        JButton confirm = new JButton("Confirm");
 
         confirm.addActionListener(e -> {
             double withdrawAmount = Double.parseDouble(amount.getText());
@@ -148,7 +158,7 @@ public class CheckingsViewer extends BankViewer {
         transferAmount.setForeground(Color.WHITE);
         transferAmount.setVisible(true);
         JTextField amount = new JTextField(5);
-        StylishButton confirm = new StylishButton("Confirm");
+        JButton confirm = new JButton("Confirm");
 
         confirm.addActionListener(e -> {
             double transferAmount = Double.parseDouble(amount.getText());
@@ -184,7 +194,7 @@ public class CheckingsViewer extends BankViewer {
         balance.setFont(new Font("Sans Serif", Font.BOLD, 20));
         balance.setForeground(Color.WHITE);
         balance.setVisible(true);
-        JLabel balanceAmount = new JLabel("$500");
+        balanceAmount = new JLabel("$" + df.format(cAccount.getBalance()));
         balanceAmount.setFont(new Font("Sans Serif", Font.BOLD, 30));
         b.setBackground(new Color(160, 212, 226));
         b.setVisible(true);
