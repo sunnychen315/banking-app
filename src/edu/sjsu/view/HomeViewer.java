@@ -1,6 +1,7 @@
 package edu.sjsu.view;
 
 import edu.sjsu.messages.CheckingMessage;
+import edu.sjsu.messages.CreditsMessage;
 import edu.sjsu.messages.Message;
 import edu.sjsu.messages.SavingsMessage;
 import edu.sjsu.model.*;
@@ -196,9 +197,16 @@ public class HomeViewer extends BankViewer {
         JLabel creditDetails = addDetails();
 
         // adds an action listener to create a new CreditViewer when "details" is clicked
-        /*
-        TODO: ADD AN ACTION LISTENER HERE
-         */
+        creditDetails.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    Message msg = new CreditsMessage();
+                    queue.put(msg);
+                } catch (InterruptedException exception) {
+                    exception.printStackTrace();
+                }
+            }
+        });
 
         // Sets the characteristics of the amount JLabel
         creditAmount = new JLabel("$" + df.format(ccAccount.getBalance()));

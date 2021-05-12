@@ -1,9 +1,9 @@
 package edu.sjsu.messages;
 
-public class ConfirmTransferButton implements Message {
+public class ConfirmTransferMessage implements Message {
     double transferAmount;
 
-    public ConfirmTransferButton(double transferAmount) {
+    public ConfirmTransferMessage(double transferAmount) {
         this.transferAmount = transferAmount;
     }
 

@@ -1,5 +1,6 @@
 package edu.sjsu.view;
 
+import edu.sjsu.assets.StylishButton;
 import edu.sjsu.messages.LoginMessage;
 import edu.sjsu.messages.Message;
 import edu.sjsu.messages.RegisterMessage;
@@ -16,11 +17,11 @@ public class LoginViewer extends BankViewer {
     // instance variables
     JTextField loginUsername;
     JPasswordField loginPassword;
-    JButton loginButton;
+    StylishButton loginButton;
     JTextField registerUsername;
     JPasswordField registerPassword;
     JPasswordField registerConfirmPassword;
-    JButton registerButton;
+    StylishButton registerButton;
 
     /**
      * This is the constructor for the LoginViewer class that will display the login screen
@@ -85,7 +86,7 @@ public class LoginViewer extends BankViewer {
         JLabel userPass = new JLabel("Password:                 ");
         loginUsername = new JTextField(15);
         loginPassword = new JPasswordField(15);
-        loginButton = new JButton("Login");
+        loginButton = new StylishButton("Login");
 
         // modifies the coordinates of the GridBagLayout and adds the components accordingly
         c.gridx = 0;
@@ -134,7 +135,7 @@ public class LoginViewer extends BankViewer {
         registerUsername = new JTextField(15);
         registerPassword = new JPasswordField(15);
         registerConfirmPassword = new JPasswordField(15);
-        registerButton = new JButton("Register");
+        registerButton = new StylishButton("Register");
 
         // modifies the coordinates of the GridBagLayout and adds the components accordingly
         g.gridx = 0;

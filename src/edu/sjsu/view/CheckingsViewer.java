@@ -1,7 +1,8 @@
 package edu.sjsu.view;
 
+import edu.sjsu.assets.StylishButton;
 import edu.sjsu.messages.ConfirmDepositMessage;
-import edu.sjsu.messages.ConfirmTransferButton;
+import edu.sjsu.messages.ConfirmTransferMessage;
 import edu.sjsu.messages.ConfirmWithdrawMessage;
 import edu.sjsu.messages.Message;
 import edu.sjsu.model.Account;
@@ -70,7 +71,7 @@ public class CheckingsViewer extends BankViewer {
         depositAmount.setForeground(Color.WHITE);
         depositAmount.setVisible(true);
         JTextField amount = new JTextField(5);
-        JButton confirm = new JButton("Confirm");
+        StylishButton confirm = new StylishButton("Confirm");
 
         confirm.addActionListener(e -> {
             double depositAmount = Double.parseDouble(amount.getText());
@@ -114,7 +115,7 @@ public class CheckingsViewer extends BankViewer {
         withdrawAmount.setForeground(Color.WHITE);
         withdrawAmount.setVisible(true);
         JTextField amount = new JTextField(5);
-        JButton confirm = new JButton("Confirm");
+        StylishButton confirm = new StylishButton("Confirm");
 
         confirm.addActionListener(e -> {
             double withdrawAmount = Double.parseDouble(amount.getText());
@@ -158,12 +159,12 @@ public class CheckingsViewer extends BankViewer {
         transferAmount.setForeground(Color.WHITE);
         transferAmount.setVisible(true);
         JTextField amount = new JTextField(5);
-        JButton confirm = new JButton("Confirm");
+        StylishButton confirm = new StylishButton("Confirm");
 
         confirm.addActionListener(e -> {
             double transferAmount = Double.parseDouble(amount.getText());
             try {
-                Message msg = new ConfirmTransferButton(transferAmount);
+                Message msg = new ConfirmTransferMessage(transferAmount);
                 queue.put(msg);
             } catch (InterruptedException exception) {
                 exception.printStackTrace();
