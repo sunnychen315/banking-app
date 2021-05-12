@@ -4,6 +4,9 @@ import edu.sjsu.messages.ConfirmDepositMessage;
 import edu.sjsu.messages.ConfirmTransferButton;
 import edu.sjsu.messages.ConfirmWithdrawMessage;
 import edu.sjsu.messages.Message;
+import edu.sjsu.model.Account;
+import edu.sjsu.model.SavingsAccount;
+import edu.sjsu.model.User;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -14,6 +17,9 @@ import java.util.concurrent.BlockingQueue;
  * this class lays out the view for the checking account page
  */
 public class SavingsViewer extends BankViewer {
+    User user;
+    SavingsAccount sAccount;
+
     JLabel depositAmount;
     JLabel withdrawAmount;
     JLabel transferAmount;
@@ -22,8 +28,15 @@ public class SavingsViewer extends BankViewer {
     /**
      * @param queue blocking queue storing the messages to be executed
      */
-    public SavingsViewer(BlockingQueue<Message> queue) {
+    public SavingsViewer(BlockingQueue<Message> queue, User user) {
         super(queue);
+        this.user = user;
+        for (Account a : user.getAccounts()) {
+            if (a.getClass() == SavingsAccount.class) {
+                sAccount = (SavingsAccount) a;
+            }
+        }
+
         this.setTitle("Savings Account");
         this.setBackground(new Color(7, 63, 120));
 
@@ -180,7 +193,7 @@ public class SavingsViewer extends BankViewer {
         balance.setFont(new Font("Sans Serif", Font.BOLD, 20));
         balance.setForeground(Color.WHITE);
         balance.setVisible(true);
-        JLabel balanceAmount = new JLabel("$300");
+        balanceAmount = new JLabel("$" + df.format(sAccount.getBalance()));
         balanceAmount.setFont(new Font("Sans Serif", Font.BOLD, 30));
         b.setBackground(new Color(160, 212, 226));
         b.setVisible(true);

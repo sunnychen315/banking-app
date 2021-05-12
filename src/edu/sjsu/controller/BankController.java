@@ -96,7 +96,7 @@ public class BankController {
 
                     //TODO: additional view-related task
                     view.dispose();
-                    view = new HomeViewer(queue);
+                    view = new HomeViewer(queue, selectedUser);
 
                     System.out.println("logged in!");
                 }
@@ -121,7 +121,7 @@ public class BankController {
                 //log in with newly created user
                 selectedUser = users.get(users.size() - 1);
                 view.dispose();
-                view = new HomeViewer(queue);
+                view = new HomeViewer(queue, selectedUser);
 
                 System.out.println("created user!");
             }
@@ -156,7 +156,7 @@ public class BankController {
                 return ValveMessage.MISS;
             }
             view.dispose();
-            view = new HomeViewer(queue);
+            view = new HomeViewer(queue, selectedUser);
 
             return ValveMessage.EXECUTED;
         }
@@ -171,7 +171,7 @@ public class BankController {
                 return ValveMessage.MISS;
             }
             view.dispose();
-            view = new CheckingsViewer(queue);
+            view = new CheckingsViewer(queue, selectedUser);
 
             return ValveMessage.EXECUTED;
         }
@@ -186,7 +186,7 @@ public class BankController {
                 return ValveMessage.MISS;
             }
             view.dispose();
-            view = new SavingsViewer(queue);
+            view = new SavingsViewer(queue, selectedUser);
 
             return ValveMessage.EXECUTED;
         }

@@ -39,10 +39,10 @@ public class LoginViewer extends BankViewer {
 
         // adds the action listener to the login button to add a login message to the blocking queue
         loginButton.addActionListener(e -> {
-            String user = loginUsername.getText();
+            String username = loginUsername.getText();
             String pass = String.valueOf(loginPassword.getPassword());
             try {
-                Message msg = new LoginMessage(user, pass);
+                Message msg = new LoginMessage(username, pass);
                 queue.put(msg);
             } catch (InterruptedException exception) {
                 exception.printStackTrace();
@@ -51,11 +51,11 @@ public class LoginViewer extends BankViewer {
 
         // adds the action listener to the register button to add a register message to the blocking queue
         registerButton.addActionListener(e -> {
-            String user = registerUsername.getText();
+            String username = registerUsername.getText();
             String pass = String.valueOf(registerPassword.getPassword());
             String confirmedPass = String.valueOf(registerConfirmPassword.getPassword());
             try {
-                queue.put(new RegisterMessage(user, pass, confirmedPass));
+                queue.put(new RegisterMessage(username, pass, confirmedPass));
             } catch (InterruptedException exception) {
                 exception.printStackTrace();
             }

@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.DecimalFormat;
 import java.util.concurrent.BlockingQueue;
 
 /**
@@ -18,6 +19,7 @@ public class BankViewer extends JFrame {
     BlockingQueue<Message> queue;
     JPanel topPanel;
     JLabel bankName;
+    DecimalFormat df;
 
     /**
      * This is the constructor for the BankViewer class that will display the basic layout for every page
@@ -26,6 +28,7 @@ public class BankViewer extends JFrame {
      */
     public BankViewer(BlockingQueue<Message> queue) {
         this.queue = queue;
+        this.df = new DecimalFormat("#0.00");
 
         // Sets the state of the JFrame to full screen
         this.getContentPane().setBackground(new Color(7, 63, 120));
@@ -68,7 +71,7 @@ public class BankViewer extends JFrame {
      */
     public void addAccountName() {
         // Creates a JLabel for the login/logout message and sets its characteristics
-        JLabel accountName = new JLabel("Login/Logout");
+        JLabel accountName = new JLabel("Logout");
         accountName.setFont(new Font("Sans Serif", Font.BOLD, 30));
         accountName.setBounds(3 * (this.getWidth() / 4), this.getY() - 30, (this.getWidth() / 4) - 10, this.getHeight() / 6);
         accountName.setBackground(new Color(160, 212, 226));
