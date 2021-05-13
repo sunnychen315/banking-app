@@ -225,6 +225,13 @@ public class BankController {
             double payment = cMessage.getAmountToPay();
             ccAccount.payCreditCardBill(payment);
 
+            try {
+                Message msg = new CreditsMessage();
+                queue.put(msg);
+            } catch (InterruptedException exception) {
+                exception.printStackTrace();
+            }
+
             return ValveMessage.EXECUTED;
         }
     }
