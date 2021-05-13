@@ -6,17 +6,15 @@ import java.util.ArrayList;
  * Class used to keep track of the credit card balance
  */
 public class Credit implements Account {
-    private final double spendingLimit = 1000;
     CheckingAccount moneySource;
-    private double balance, interest;
+    private double balance;
     private ArrayList<String> transactions;
 
     /**
      * Constructor to update variables
      */
-    public Credit(CheckingAccount source, double interest) {
-        this.interest = interest;
-        this.balance = 0 + interest;
+    public Credit(CheckingAccount source) {
+        this.balance = 0;
         transactions = new ArrayList<>();
         moneySource = source;
     }
@@ -28,12 +26,6 @@ public class Credit implements Account {
         return this.balance;
     }
 
-    /**
-     * @return interest
-     */
-    public double getInterest() {
-        return this.interest;
-    }
 
     public void withdraw(double amount) {
         //do we need this bc you cant withdraw from a credit card
