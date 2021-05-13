@@ -54,6 +54,17 @@ public class HomeViewer extends BankViewer {
         // adds the login/logout message to the top of the screen
         addAccountName();
 
+        // creates and adds a JLabel with a welcome message
+        JLabel welcomeText = new JLabel("Welcome, " + user.getUserName());
+        welcomeText.setFont(new Font("Sans Serif", Font.BOLD, 30));
+        welcomeText.setBounds(this.getX() + 10, topPanel.getHeight() - 20, this.getWidth() / 4, this.getHeight() / 10);
+        welcomeText.setBackground(new Color(7, 63, 120));
+        welcomeText.setForeground(Color.WHITE);
+        welcomeText.setHorizontalAlignment(SwingConstants.LEFT);
+        welcomeText.setVerticalAlignment(SwingConstants.BOTTOM);
+        welcomeText.setVisible(true);
+        this.add(welcomeText);
+
         // creates and adds a JLabel with the text "My Accounts"
         JLabel accountText = new JLabel("My Accounts");
         accountText.setFont(new Font("Sans Serif", Font.BOLD, 20));

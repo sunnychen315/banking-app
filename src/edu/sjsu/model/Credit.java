@@ -11,7 +11,7 @@ public class Credit implements Account {
      * Constructor to update variables
      */
     public Credit(CheckingAccount source) {
-        this.balance = 0;
+        this.balance = 500;
         moneySource = source;
     }
 
@@ -36,7 +36,7 @@ public class Credit implements Account {
             moneySource.setBalance(checkingBalance - amountToPay);
             this.balance -= amountToPay;
         }
-        
+
     }
 
 
