@@ -1,21 +1,17 @@
 package edu.sjsu.model;
 
-import java.util.ArrayList;
-
 /**
  * Class used to keep track of the credit card balance
  */
 public class Credit implements Account {
     CheckingAccount moneySource;
     private double balance;
-    private ArrayList<String> transactions;
 
     /**
      * Constructor to update variables
      */
     public Credit(CheckingAccount source) {
         this.balance = 0;
-        transactions = new ArrayList<>();
         moneySource = source;
     }
 
@@ -40,9 +36,7 @@ public class Credit implements Account {
             moneySource.setBalance(checkingBalance - amountToPay);
             this.balance -= amountToPay;
         }
-
-
-        transactions.add("Paid $" + amountToPay);
+        
     }
 
 

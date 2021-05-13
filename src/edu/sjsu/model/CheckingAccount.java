@@ -1,25 +1,20 @@
 package edu.sjsu.model;
 
-import java.util.ArrayList;
-
 /**
  * Class used to represent checking account where user can use debit card
  * user can withdraw and deposit checking account
  */
 public class CheckingAccount implements Account {
 
-    private double balance, interest;
-    private ArrayList<String> transactions;
+    private double balance;
 
     /**
      * Constructor to update variables
      *
      * @param balance of the account
      */
-    public CheckingAccount(double balance, double interest) {
+    public CheckingAccount(double balance) {
         this.balance = balance;
-        this.interest = interest;
-        transactions = new ArrayList<>();
     }
 
     /**
@@ -29,12 +24,6 @@ public class CheckingAccount implements Account {
         return this.balance;
     }
 
-    /**
-     * @return interest
-     */
-    public double getInterest() {
-        return this.interest;
-    }
 
     /**
      * updates balance after withdraw
@@ -42,7 +31,6 @@ public class CheckingAccount implements Account {
     public void withdraw(double amountToWithdraw) {
         if (amountToWithdraw <= balance) {
             this.balance -= amountToWithdraw;
-            transactions.add("Withdrew $" + amountToWithdraw);
         }
     }
 
@@ -61,18 +49,10 @@ public class CheckingAccount implements Account {
     }
 
     /**
-     * @return the transactions
-     */
-    public ArrayList<String> getTransactions() {
-        return transactions;
-    }
-
-    /**
      * deposits to checking account balance and updates balance
      */
     public void deposit(double amountToDeposit) {
         this.balance += amountToDeposit;
-        transactions.add("Deposited $" + amountToDeposit);
     }
 
     public void setBalance(double balance) {

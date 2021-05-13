@@ -1,25 +1,20 @@
 package edu.sjsu.model;
 
-import java.util.ArrayList;
-
 /**
  * Class used to represent savings account where user accumulates money not ready to use yet
  * user can withdraw and deposit  into a savings account
  */
 public class SavingsAccount implements Account {
     private final int THRESHOLD = 1000;
-    private double balance, interest;
-    private ArrayList<String> transactions;
+    private double balance;
 
     /**
      * Constructor to update variables
      *
      * @param balance of the account
      */
-    public SavingsAccount(double balance, double interest) {
+    public SavingsAccount(double balance) {
         this.balance = balance;
-        this.interest = interest;
-        transactions = new ArrayList<>();
     }
 
     /**
@@ -29,12 +24,6 @@ public class SavingsAccount implements Account {
         return this.balance;
     }
 
-    /**
-     * @return interest
-     */
-    public double getInterest() {
-        return this.interest;
-    }
 
     /**
      * updates balance after withdraw
@@ -42,7 +31,6 @@ public class SavingsAccount implements Account {
     public void withdraw(double amountToWithdraw) {
         if (canWithdraw(amountToWithdraw)) {
             this.balance -= amountToWithdraw;
-            transactions.add("Withdrew $" + amountToWithdraw);
         }
     }
 
@@ -60,19 +48,12 @@ public class SavingsAccount implements Account {
         }
     }
 
-    /**
-     * @return the transactions
-     */
-    public ArrayList<String> getTransactions() {
-        return transactions;
-    }
 
     /**
      * deposits to savings account balance and updates balance
      */
     public void deposit(double amountToDeposit) {
         this.balance += amountToDeposit;
-        transactions.add("Deposited $" + amountToDeposit);
     }
 
     /**
