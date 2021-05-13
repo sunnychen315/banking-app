@@ -40,8 +40,10 @@ public class CheckingAccount implements Account {
      * updates balance after withdraw
      */
     public void withdraw(double amountToWithdraw) {
-        this.balance -= amountToWithdraw;
-        transactions.add("Withdrew $" + amountToWithdraw);
+        if (amountToWithdraw <= balance) {
+            this.balance -= amountToWithdraw;
+            transactions.add("Withdrew $" + amountToWithdraw);
+        }
     }
 
     /**

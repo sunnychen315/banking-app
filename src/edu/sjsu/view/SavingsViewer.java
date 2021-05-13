@@ -118,7 +118,7 @@ public class SavingsViewer extends BankViewer {
         confirm.addActionListener(e -> {
             double withdrawAmount = Double.parseDouble(amount.getText());
             try {
-                Message msg = new ConfirmWithdrawMessage(withdrawAmount);
+                Message msg = new ConfirmWithdrawMessage(withdrawAmount, sAccount);
                 queue.put(msg);
             } catch (InterruptedException exception) {
                 exception.printStackTrace();

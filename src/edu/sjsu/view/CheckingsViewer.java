@@ -119,7 +119,7 @@ public class CheckingsViewer extends BankViewer {
         confirm.addActionListener(e -> {
             double withdrawAmount = Double.parseDouble(amount.getText());
             try {
-                Message msg = new ConfirmWithdrawMessage(withdrawAmount);
+                Message msg = new ConfirmWithdrawMessage(withdrawAmount, cAccount);
                 queue.put(msg);
             } catch (InterruptedException exception) {
                 exception.printStackTrace();

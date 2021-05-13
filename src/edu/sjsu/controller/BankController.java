@@ -41,6 +41,7 @@ public class BankController {
         valves.add(new SavingsMessageValve());
         valves.add(new CreditMessageValve());
         valves.add(new CreditCardPaymentValve());
+        valves.add(new WithdrawValve());
 
         mainLoop();
     }
@@ -230,6 +231,40 @@ public class BankController {
                 queue.put(msg);
             } catch (InterruptedException exception) {
                 exception.printStackTrace();
+            }
+
+            return ValveMessage.EXECUTED;
+        }
+    }
+
+    private class WithdrawValve implements Valve {
+
+        @Override
+        public ValveMessage execute(Message message) {
+            //check if correct message
+            if (message.getClass() != ConfirmWithdrawMessage.class) {
+                return ValveMessage.MISS;
+            }
+            ConfirmWithdrawMessage wMessage = (ConfirmWithdrawMessage) message;
+            double amount = wMessage.getWithdrawAmount();
+            Account account = wMessage.getAccount();
+
+            if (account.getClass() == CheckingAccount.class) {
+                cAccount.withdraw(amount);
+                try {
+                    Message msg = new CheckingMessage();
+                    queue.put(msg);
+                } catch (InterruptedException exception) {
+                    exception.printStackTrace();
+                }
+            } else if (account.getClass() == SavingsAccount.class) {
+                sAccount.withdraw(amount);
+                try {
+                    Message msg = new SavingsMessage();
+                    queue.put(msg);
+                } catch (InterruptedException exception) {
+                    exception.printStackTrace();
+                }
             }
 
             return ValveMessage.EXECUTED;

@@ -40,8 +40,10 @@ public class SavingsAccount implements Account {
      * updates balance after withdraw
      */
     public void withdraw(double amountToWithdraw) {
-        this.balance -= amountToWithdraw;
-        transactions.add("Withdrew $" + amountToWithdraw);
+        if (canWithdraw(amountToWithdraw)) {
+            this.balance -= amountToWithdraw;
+            transactions.add("Withdrew $" + amountToWithdraw);
+        }
     }
 
     /**
