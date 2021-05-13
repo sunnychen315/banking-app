@@ -1,4 +1,4 @@
-# CS151 Term Project- Banking App
+# CS151 Term Project- Banking App :moneybag:
 Contributers: Abey John, Constantin Khamis, Hitayshi Shah, Sunny Chen
 
 ## Getting Started with Git & GitHub
