@@ -15,3 +15,4 @@ To be able to pull the latest updates from the main project repository into your
 **Every time you want to pull the latest updates from the main project repository, run `git pull upstream main`.**
 
 ## Project Overview
+Our banking app was created using the Java Swing library and an MVC pattern with event driven programming. The application allows for multiple users. Each user has their own account and have different bank accounts such as checkings and savings. The user is able to withdraw, deposit, and transfer to and from each account. In addition, the user has a Credit account where they can view thier credit card balance and pay off their credit card bill.
