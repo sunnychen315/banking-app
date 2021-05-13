@@ -18,11 +18,11 @@ public class User {
         this.userName = userName;
         accounts = new ArrayList<Account>();
 
-        CheckingAccount checking = new CheckingAccount(10250.01, 0.05);
-        SavingsAccount savings = new SavingsAccount(12345.67, 0.05);
+        CheckingAccount checking = new CheckingAccount(10250.01);
+        SavingsAccount savings = new SavingsAccount(12345.67);
         accounts.add(checking);
         accounts.add(savings);
-        accounts.add(new Credit(checking, 0.05));
+        accounts.add(new Credit(checking));
     }
 
     /**
