@@ -70,7 +70,7 @@ public class CheckingAccount implements Account {
     /**
      * deposits to checking account balance and updates balance
      */
-    public void deposit(int amountToDeposit) {
+    public void deposit(double amountToDeposit) {
         this.balance += amountToDeposit;
         transactions.add("Deposited $" + amountToDeposit);
     }

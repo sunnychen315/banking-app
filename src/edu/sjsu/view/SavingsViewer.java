@@ -80,7 +80,7 @@ public class SavingsViewer extends BankViewer {
         confirm.addActionListener(e -> {
             double depositAmount = Double.parseDouble(amount.getText());
             try {
-                Message msg = new ConfirmDepositMessage(depositAmount);
+                Message msg = new ConfirmDepositMessage(depositAmount, sAccount);
                 queue.put(msg);
             } catch (InterruptedException exception) {
                 exception.printStackTrace();

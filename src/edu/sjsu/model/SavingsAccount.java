@@ -70,7 +70,7 @@ public class SavingsAccount implements Account {
     /**
      * deposits to savings account balance and updates balance
      */
-    public void deposit(int amountToDeposit) {
+    public void deposit(double amountToDeposit) {
         this.balance += amountToDeposit;
         transactions.add("Deposited $" + amountToDeposit);
     }

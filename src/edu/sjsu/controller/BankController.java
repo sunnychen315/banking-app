@@ -43,6 +43,7 @@ public class BankController {
         valves.add(new CreditCardPaymentValve());
         valves.add(new WithdrawValve());
         valves.add(new TransferValve());
+        valves.add(new DepositValve());
 
         mainLoop();
     }
@@ -213,6 +214,42 @@ public class BankController {
 
             return ValveMessage.EXECUTED;
         }
+    }
+
+    private class DepositValve implements Valve {
+        @Override
+        public ValveMessage execute(Message message) {
+            if (message.getClass() != ConfirmDepositMessage.class) {
+                return ValveMessage.MISS;
+            }
+            ConfirmDepositMessage dMessage = (ConfirmDepositMessage) message;
+            double amount = dMessage.getDepositAmount();
+            Account account = dMessage.getAccount();
+
+            if (account.getClass() == CheckingAccount.class) {
+                cAccount.deposit(amount);
+
+
+                try {
+                    Message m = new CheckingMessage();
+                    queue.put(m);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            } else if (account.getClass() == SavingsAccount.class) {
+                sAccount.deposit(amount);
+
+                try {
+                    Message m = new SavingsMessage();
+                    queue.put(m);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            return ValveMessage.EXECUTED;
+        }
+
     }
 
     private class CreditCardPaymentValve implements Valve {
