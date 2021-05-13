@@ -40,8 +40,10 @@ public class CheckingAccount implements Account {
      * updates balance after withdraw
      */
     public void withdraw(double amountToWithdraw) {
-        this.balance -= amountToWithdraw;
-        transactions.add("Withdrew $" + amountToWithdraw);
+        if (amountToWithdraw <= balance) {
+            this.balance -= amountToWithdraw;
+            transactions.add("Withdrew $" + amountToWithdraw);
+        }
     }
 
     /**
@@ -52,7 +54,10 @@ public class CheckingAccount implements Account {
      * @param amount
      */
     public void transfer(Account from, Account to, double amount) {
-
+        if (amount < from.getBalance()) {
+            from.setBalance(from.getBalance() - amount);
+            to.setBalance(to.getBalance() + amount);
+        }
     }
 
     /**
@@ -68,5 +73,9 @@ public class CheckingAccount implements Account {
     public void deposit(int amountToDeposit) {
         this.balance += amountToDeposit;
         transactions.add("Deposited $" + amountToDeposit);
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
     }
 }

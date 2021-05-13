@@ -9,4 +9,6 @@ public interface Account {
     public double getInterest();
 
     public void withdraw(double amount);
+
+    public void setBalance(double balance);
 }

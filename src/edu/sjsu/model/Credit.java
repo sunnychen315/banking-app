@@ -44,8 +44,8 @@ public class Credit implements Account {
      */
     public void payCreditCardBill(double amountToPay) {
         if (amountToPay <= balance && isPayableThroughChecking()) {
-            double checkingsBalance = moneySource.getBalance();
-            checkingsBalance -= amountToPay;
+            double checkingBalance = moneySource.getBalance();
+            moneySource.setBalance(checkingBalance - amountToPay);
             this.balance -= amountToPay;
         }
 
@@ -64,5 +64,9 @@ public class Credit implements Account {
             return true;
         }
         return false;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
     }
 }

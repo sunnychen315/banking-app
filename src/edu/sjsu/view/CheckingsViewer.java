@@ -6,6 +6,7 @@ import edu.sjsu.messages.ConfirmWithdrawMessage;
 import edu.sjsu.messages.Message;
 import edu.sjsu.model.Account;
 import edu.sjsu.model.CheckingAccount;
+import edu.sjsu.model.SavingsAccount;
 import edu.sjsu.model.User;
 
 import javax.swing.*;
@@ -23,6 +24,7 @@ public class CheckingsViewer extends BankViewer {
     JLabel balanceAmount;
     User user;
     CheckingAccount cAccount;
+    SavingsAccount sAccount;
 
     /**
      * @param queue blocking queue storing the messages to be executed
@@ -33,6 +35,9 @@ public class CheckingsViewer extends BankViewer {
         for (Account a : user.getAccounts()) {
             if (a.getClass() == CheckingAccount.class) {
                 cAccount = (CheckingAccount) a;
+            }
+            if (a.getClass() == SavingsAccount.class) {
+                sAccount = (SavingsAccount) a;
             }
         }
         this.setTitle("Checking's Account");
@@ -119,7 +124,7 @@ public class CheckingsViewer extends BankViewer {
         confirm.addActionListener(e -> {
             double withdrawAmount = Double.parseDouble(amount.getText());
             try {
-                Message msg = new ConfirmWithdrawMessage(withdrawAmount);
+                Message msg = new ConfirmWithdrawMessage(withdrawAmount, cAccount);
                 queue.put(msg);
             } catch (InterruptedException exception) {
                 exception.printStackTrace();
@@ -163,7 +168,7 @@ public class CheckingsViewer extends BankViewer {
         confirm.addActionListener(e -> {
             double transferAmount = Double.parseDouble(amount.getText());
             try {
-                Message msg = new ConfirmTransferMessage(transferAmount);
+                Message msg = new ConfirmTransferMessage(transferAmount, cAccount, sAccount);
                 queue.put(msg);
             } catch (InterruptedException exception) {
                 exception.printStackTrace();
