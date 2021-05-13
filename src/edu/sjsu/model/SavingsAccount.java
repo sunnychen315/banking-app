@@ -54,7 +54,10 @@ public class SavingsAccount implements Account {
      * @param amount
      */
     public void transfer(Account from, Account to, double amount) {
-        //logic goes here
+        if (amount < from.getBalance()) {
+            from.setBalance(from.getBalance() - amount);
+            to.setBalance(to.getBalance() + amount);
+        }
     }
 
     /**
@@ -81,4 +84,7 @@ public class SavingsAccount implements Account {
         return (amount < THRESHOLD && amount < this.balance);
     }
 
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
 }

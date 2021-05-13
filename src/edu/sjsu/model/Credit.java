@@ -65,4 +65,8 @@ public class Credit implements Account {
         }
         return false;
     }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
 }

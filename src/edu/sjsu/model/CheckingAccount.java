@@ -54,7 +54,10 @@ public class CheckingAccount implements Account {
      * @param amount
      */
     public void transfer(Account from, Account to, double amount) {
-
+        if (amount < from.getBalance()) {
+            from.setBalance(from.getBalance() - amount);
+            to.setBalance(to.getBalance() + amount);
+        }
     }
 
     /**

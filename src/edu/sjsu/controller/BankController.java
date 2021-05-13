@@ -42,6 +42,7 @@ public class BankController {
         valves.add(new CreditMessageValve());
         valves.add(new CreditCardPaymentValve());
         valves.add(new WithdrawValve());
+        valves.add(new TransferValve());
 
         mainLoop();
     }
@@ -259,6 +260,41 @@ public class BankController {
                 }
             } else if (account.getClass() == SavingsAccount.class) {
                 sAccount.withdraw(amount);
+                try {
+                    Message msg = new SavingsMessage();
+                    queue.put(msg);
+                } catch (InterruptedException exception) {
+                    exception.printStackTrace();
+                }
+            }
+
+            return ValveMessage.EXECUTED;
+        }
+    }
+
+    private class TransferValve implements Valve {
+
+        @Override
+        public ValveMessage execute(Message message) {
+            //check if correct message
+            if (message.getClass() != ConfirmTransferMessage.class) {
+                return ValveMessage.MISS;
+            }
+            ConfirmTransferMessage tMessage = (ConfirmTransferMessage) message;
+            double amount = tMessage.getTransferAmount();
+            Account from = tMessage.getFrom();
+            Account to = tMessage.getTo();
+
+            if (from.getClass() == CheckingAccount.class) {
+                cAccount.transfer(from, to, amount);
+                try {
+                    Message msg = new CheckingMessage();
+                    queue.put(msg);
+                } catch (InterruptedException exception) {
+                    exception.printStackTrace();
+                }
+            } else if (from.getClass() == SavingsAccount.class) {
+                sAccount.transfer(from, to, amount);
                 try {
                     Message msg = new SavingsMessage();
                     queue.put(msg);
