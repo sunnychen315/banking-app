@@ -45,8 +45,8 @@ public class BankViewer extends JFrame {
         topPanel.setLayout(null);
 
         // Creates a JLabel for the bank's name and sets its characteristics
-        bankName = new JLabel("Bank Name");
-        bankName.setFont(new Font("Sans Serif", Font.BOLD, 50));
+        bankName = new JLabel("Bank of Mariia");
+        bankName.setFont(new Font("Sans Serif", Font.BOLD, 45));
         bankName.setBounds(this.getX() + 10, this.getY() - 30, this.getWidth() / 4, this.getHeight() / 6);
         bankName.setBackground(new Color(160, 212, 226));
         bankName.setForeground(Color.WHITE);
