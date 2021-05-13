@@ -69,4 +69,8 @@ public class CheckingAccount implements Account {
         this.balance += amountToDeposit;
         transactions.add("Deposited $" + amountToDeposit);
     }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
 }

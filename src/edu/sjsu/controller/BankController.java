@@ -1,8 +1,7 @@
 package edu.sjsu.controller;
 
 import edu.sjsu.messages.*;
-import edu.sjsu.model.User;
-import edu.sjsu.model.UserList;
+import edu.sjsu.model.*;
 import edu.sjsu.view.*;
 
 import java.util.LinkedList;
@@ -16,6 +15,9 @@ public class BankController {
     private UserList users;
     private BankViewer view;
     private User selectedUser;
+    private CheckingAccount cAccount;
+    private SavingsAccount sAccount;
+    private Credit ccAccount;
 
     /**
      * Creates a Controller object
@@ -38,6 +40,7 @@ public class BankController {
         valves.add(new CheckingMessageValve());
         valves.add(new SavingsMessageValve());
         valves.add(new CreditMessageValve());
+        valves.add(new CreditCardPaymentValve());
 
         mainLoop();
     }
@@ -94,6 +97,7 @@ public class BankController {
                 //Check if passwords match
                 if (currentUser.getPassword().equals(loginInfo.getPassword()) && currentUser.getPassword().length() != 0) {
                     selectedUser = currentUser;
+                    setAccounts();
 
                     view.dispose();
                     view = new HomeViewer(queue, selectedUser);
@@ -120,6 +124,7 @@ public class BankController {
             if (users.addUser(registerInfo.getUser(), registerInfo.getPassword(), registerInfo.getConfirmedPassword())) {
                 //log in with newly created user
                 selectedUser = users.get(users.size() - 1);
+                setAccounts();
 
                 view.dispose();
                 view = new HomeViewer(queue, selectedUser);
@@ -205,6 +210,37 @@ public class BankController {
             view = new CreditViewer(queue, selectedUser);
 
             return ValveMessage.EXECUTED;
+        }
+    }
+
+    private class CreditCardPaymentValve implements Valve {
+
+        @Override
+        public ValveMessage execute(Message message) {
+            //check if correct message
+            if (message.getClass() != ConfirmCreditCardPaymentMessage.class) {
+                return ValveMessage.MISS;
+            }
+            ConfirmCreditCardPaymentMessage cMessage = (ConfirmCreditCardPaymentMessage) message;
+            double payment = cMessage.getAmountToPay();
+            ccAccount.payCreditCardBill(payment);
+
+            return ValveMessage.EXECUTED;
+        }
+    }
+
+
+    private void setAccounts() {
+        for (Account a : selectedUser.getAccounts()) {
+            if (a.getClass() == CheckingAccount.class) {
+                this.cAccount = (CheckingAccount) a;
+            }
+            if (a.getClass() == SavingsAccount.class) {
+                this.sAccount = (SavingsAccount) a;
+            }
+            if (a.getClass() == Credit.class) {
+                this.ccAccount = (Credit) a;
+            }
         }
     }
 }
