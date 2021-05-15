@@ -8,6 +8,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
 
+/**
+ * This class is the controller component of the MVC pattern. Valves are used to execute the messages
+ * that are passed into the blocking queues
+ */
 public class BankController {
     // instance variables
     private BlockingQueue<Message> queue;
@@ -78,6 +82,10 @@ public class BankController {
         public ValveMessage execute(Message message);
     }
 
+    /**
+     * this valve executes the login message that allows the user to login to their account. It checks if the user
+     * exists and if the account exists.
+     */
     private class LoginMessageValve implements Valve {
 
         @Override
@@ -113,6 +121,10 @@ public class BankController {
 
     }
 
+    /**
+     * This valve is used to register a new account and login with the new account.
+     * The account is saved in a list of users
+     */
     private class RegisterMessageValve implements Valve {
 
         @Override
@@ -140,6 +152,7 @@ public class BankController {
 
     }
 
+ 
     private class SignOutMessageValve implements Valve {
 
         @Override

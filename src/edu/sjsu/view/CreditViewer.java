@@ -11,11 +11,20 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.concurrent.BlockingQueue;
 
+/**
+ * this class lays out the view for the credit card account
+ */
 public class CreditViewer extends BankViewer {
 
     User user;
     Credit ccAccount;
 
+    /**
+     * constructor that creates the credit card page
+     *
+     * @param queue blocking queue that holds messages
+     * @param user
+     */
     public CreditViewer(BlockingQueue<Message> queue, User user) {
         super(queue);
         this.setTitle("Credit Card Account");
@@ -35,6 +44,10 @@ public class CreditViewer extends BankViewer {
         this.setVisible(true);
     }
 
+    /**
+     * Contains code for the balance panel where the user can pay off the credit card balance.
+     * Contains action listener for when the pay button is clicked
+     */
     public void addBalancePanel() {
         JPanel b = new JPanel();
         b.setBounds(this.getWidth() / 4, 5 * this.getHeight() / 12, this.getWidth() / 4, this.getHeight() / 3);

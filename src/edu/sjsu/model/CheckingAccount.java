@@ -37,9 +37,9 @@ public class CheckingAccount implements Account {
     /**
      * Transfers money to another account
      *
-     * @param from
-     * @param to
-     * @param amount
+     * @param from   account
+     * @param to     account
+     * @param amount to transfer
      */
     public void transfer(Account from, Account to, double amount) {
         if (amount < from.getBalance()) {
@@ -55,6 +55,9 @@ public class CheckingAccount implements Account {
         this.balance += amountToDeposit;
     }
 
+    /**
+     * @param balance of account
+     */
     public void setBalance(double balance) {
         this.balance = balance;
     }

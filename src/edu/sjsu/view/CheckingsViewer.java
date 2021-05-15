@@ -27,6 +27,8 @@ public class CheckingsViewer extends BankViewer {
     SavingsAccount sAccount;
 
     /**
+     * constructor that creates an instance of checking viewer
+     *
      * @param queue blocking queue storing the messages to be executed
      */
     public CheckingsViewer(BlockingQueue<Message> queue, User user) {

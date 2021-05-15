@@ -37,9 +37,9 @@ public class SavingsAccount implements Account {
     /**
      * Transfers money to another account
      *
-     * @param from
-     * @param to
-     * @param amount
+     * @param from   account
+     * @param to     account
+     * @param amount to transfer
      */
     public void transfer(Account from, Account to, double amount) {
         if (amount < from.getBalance()) {

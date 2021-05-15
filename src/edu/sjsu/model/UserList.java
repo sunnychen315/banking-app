@@ -32,7 +32,7 @@ public class UserList extends ArrayList<User> {
     /**
      * this method checks if a user exists
      *
-     * @param userName
+     * @param userName of user
      * @return
      */
     public boolean validUsername(String userName) {
@@ -47,9 +47,9 @@ public class UserList extends ArrayList<User> {
     /**
      * this method checks if a login is valid
      *
-     * @param userName
-     * @param password
-     * @return
+     * @param userName of user
+     * @param password of user
+     * @return t/f if login is successful
      */
     public boolean validLogin(String userName, String password) {
         for (User u : this) {
@@ -60,13 +60,5 @@ public class UserList extends ArrayList<User> {
         return false;
     }
 
-    /**
-     * this shows all the users in the list
-     */
-    public void showUser() {
-        for (int i = 0; i < this.size(); i++) {
-            this.get(i).toString();
-        }
-    }
 
 }
