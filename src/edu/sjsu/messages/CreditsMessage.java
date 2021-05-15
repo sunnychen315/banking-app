@@ -1,5 +1,8 @@
 package edu.sjsu.messages;
 
-public class CreditsMessage implements Message{
+/**
+ * message used when showing credit card page
+ */
+public class CreditsMessage implements Message {
 
 }
