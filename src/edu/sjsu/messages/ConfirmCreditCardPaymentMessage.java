@@ -13,6 +13,10 @@ public class ConfirmCreditCardPaymentMessage implements Message {
         this.amountToPay = amountToPay;
     }
 
+    /**
+     * gets the amount needed
+     * @return amount
+     */
     public double getAmountToPay() {
         return amountToPay;
     }

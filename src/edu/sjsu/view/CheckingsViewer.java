@@ -30,6 +30,7 @@ public class CheckingsViewer extends BankViewer {
      * constructor that creates an instance of checking viewer
      *
      * @param queue blocking queue storing the messages to be executed
+     * @param user the user to be accessed
      */
     public CheckingsViewer(BlockingQueue<Message> queue, User user) {
         super(queue);

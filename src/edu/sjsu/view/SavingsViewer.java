@@ -28,7 +28,9 @@ public class SavingsViewer extends BankViewer {
     JLabel balanceAmount;
 
     /**
+     * Constructs view
      * @param queue blocking queue storing the messages to be executed
+     * @param user the user to be accessed
      */
     public SavingsViewer(BlockingQueue<Message> queue, User user) {
         super(queue);

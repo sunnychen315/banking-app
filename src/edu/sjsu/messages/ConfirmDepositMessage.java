@@ -21,10 +21,18 @@ public class ConfirmDepositMessage implements Message {
         this.account = account;
     }
 
+    /**
+     * gets the amount in the account
+     * @return value
+     */
     public double getDepositAmount() {
         return depositAmount;
     }
 
+    /**
+     * gets the containing account
+     * @return account
+     */
     public Account getAccount() {
         return account;
     }

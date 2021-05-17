@@ -88,6 +88,10 @@ public class BankController {
      */
     private class LoginMessageValve implements Valve {
 
+    	/**
+    	 * Executes login logic
+    	 * @param: Message: the generic message to be used
+    	 */
         @Override
         public ValveMessage execute(Message message) {
             //check if correct message
@@ -127,6 +131,10 @@ public class BankController {
      */
     private class RegisterMessageValve implements Valve {
 
+    	/**
+    	 * Executes registration logic
+    	 * @param: Message: the generic message to be used
+    	 */
         @Override
         public ValveMessage execute(Message message) {
             //check if correct message
@@ -155,6 +163,10 @@ public class BankController {
  
     private class SignOutMessageValve implements Valve {
 
+    	/**
+    	 * Executes signing out logic
+    	 * @param: Message: the generic message to be used
+    	 */
         @Override
         public ValveMessage execute(Message message) {
             //check if correct message
@@ -171,6 +183,10 @@ public class BankController {
 
     private class HomeMessageValve implements Valve {
 
+    	/**
+    	 * Executes returning to the home screen
+    	 * @param: Message: the generic message to be used
+    	 */
         @Override
         public ValveMessage execute(Message message) {
             //check if correct message
@@ -186,6 +202,10 @@ public class BankController {
 
     private class CheckingMessageValve implements Valve {
 
+    	/**
+    	 * Executes navigation to checking account
+    	 * @param: Message: the generic message to be used
+    	 */
         @Override
         public ValveMessage execute(Message message) {
             //check if correct message
@@ -201,6 +221,10 @@ public class BankController {
 
     private class SavingsMessageValve implements Valve {
 
+    	/**
+    	 * Executes navigation to savings account
+    	 * @param: Message: the generic message to be used
+    	 */
         @Override
         public ValveMessage execute(Message message) {
             //check if correct message
@@ -216,6 +240,10 @@ public class BankController {
 
     private class CreditMessageValve implements Valve {
 
+    	/**
+    	 * Executes navigation to creadit account
+    	 * @param: Message: the generic message to be used
+    	 */
         @Override
         public ValveMessage execute(Message message) {
             //check if correct message
@@ -230,6 +258,10 @@ public class BankController {
     }
 
     private class DepositValve implements Valve {
+    	/**
+    	 * Executes depositing logic
+    	 * @param: Message: the generic message to be used
+    	 */
         @Override
         public ValveMessage execute(Message message) {
             if (message.getClass() != ConfirmDepositMessage.class) {
@@ -267,6 +299,10 @@ public class BankController {
 
     private class CreditCardPaymentValve implements Valve {
 
+    	/**
+    	 * Executes paying off a credit card
+    	 * @param: Message: the generic message to be used
+    	 */
         @Override
         public ValveMessage execute(Message message) {
             //check if correct message
@@ -290,6 +326,10 @@ public class BankController {
 
     private class WithdrawValve implements Valve {
 
+    	/**
+    	 * Executes withdraw logic
+    	 * @param: Message: the generic message to be used
+    	 */
         @Override
         public ValveMessage execute(Message message) {
             //check if correct message
@@ -324,6 +364,10 @@ public class BankController {
 
     private class TransferValve implements Valve {
 
+    	/**
+    	 * Executes transferring of money
+    	 * @param: Message: the generic message to be used
+    	 */
         @Override
         public ValveMessage execute(Message message) {
             //check if correct message

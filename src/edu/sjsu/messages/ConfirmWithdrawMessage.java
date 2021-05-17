@@ -21,10 +21,18 @@ public class ConfirmWithdrawMessage implements Message {
         this.account = account;
     }
 
+    /**
+     * gets the withdraw amount
+     * @return money to withdraw
+     */
     public double getWithdrawAmount() {
         return withdrawAmount;
     }
 
+    /**
+     * gets the containing account
+     * @return account
+     */
     public Account getAccount() {
         return account;
     }

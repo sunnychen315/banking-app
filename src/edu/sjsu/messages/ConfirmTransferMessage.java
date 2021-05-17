@@ -23,14 +23,26 @@ public class ConfirmTransferMessage implements Message {
         this.to = to;
     }
 
+    /**
+     * gets the transfer value
+     * @return money to be transfered
+     */
     public double getTransferAmount() {
         return transferAmount;
     }
 
+    /**
+     * gets the account to get the money from
+     * @return donor account
+     */
     public Account getFrom() {
         return from;
     }
 
+    /**
+     * gets the account to transfer to
+     * @return receiving account
+     */
     public Account getTo() {
         return to;
     }

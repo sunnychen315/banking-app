@@ -32,6 +32,7 @@ public class HomeViewer extends BankViewer {
      * This is the constructor for the HomeViewer class
      *
      * @param queue blocking queue storing the messages to be executed
+     * @param user the user to be changed
      */
     public HomeViewer(BlockingQueue<Message> queue, User user) {
 

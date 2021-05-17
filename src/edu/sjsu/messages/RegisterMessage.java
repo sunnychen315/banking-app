@@ -21,14 +21,26 @@ public class RegisterMessage implements Message {
         this.confirmedPassword = confirmedPassword;
     }
 
+    /**
+     * gets the username
+     * @return username
+     */
     public String getUser() {
         return user;
     }
 
+    /**
+     * gets the password
+     * @return password
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     * gets the duplicate password
+     * @return password
+     */
     public String getConfirmedPassword() {
         return confirmedPassword;
     }
