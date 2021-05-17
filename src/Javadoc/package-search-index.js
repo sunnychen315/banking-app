@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"edu.sjsu"},{"l":"edu.sjsu.controller"},{"l":"edu.sjsu.messages"},{"l":"edu.sjsu.model"},{"l":"edu.sjsu.view"}];updateSearchResults();

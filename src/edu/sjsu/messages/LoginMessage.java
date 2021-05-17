@@ -17,11 +17,19 @@ public class LoginMessage implements Message {
         this.user = user;
         this.password = password;
     }
-
+    
+    /**
+     * gets the username
+     * @return username
+     */
     public String getUser() {
         return user;
     }
 
+    /**
+     * gets the password entered for the account
+     * @return password
+     */
     public String getPassword() {
         return password;
     }

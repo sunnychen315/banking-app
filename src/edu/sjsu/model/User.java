@@ -12,6 +12,8 @@ public class User {
 
     /**
      * Constructor for User class
+     * @param userName the username of the account
+     * @param password the password of the account
      */
     public User(String userName, String password) {
         this.password = password;
@@ -26,6 +28,7 @@ public class User {
     }
 
     /**
+     * the list of accounts
      * @return accounts
      */
     public ArrayList<Account> getAccounts() {
@@ -33,6 +36,7 @@ public class User {
     }
 
     /**
+     * gets the username of the account
      * @return userName
      */
     public String getUserName() {
@@ -40,6 +44,7 @@ public class User {
     }
 
     /**
+     * gets the password of the account
      * @return password
      */
     public String getPassword() {

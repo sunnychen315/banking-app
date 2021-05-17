@@ -51,6 +51,7 @@ public class SavingsAccount implements Account {
 
     /**
      * deposits to savings account balance and updates balance
+     * @param amountToDeposit the amount to deposit
      */
     public void deposit(double amountToDeposit) {
         this.balance += amountToDeposit;

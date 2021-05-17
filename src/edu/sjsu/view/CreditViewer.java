@@ -23,7 +23,7 @@ public class CreditViewer extends BankViewer {
      * constructor that creates the credit card page
      *
      * @param queue blocking queue that holds messages
-     * @param user
+     * @param user the user to be accessed
      */
     public CreditViewer(BlockingQueue<Message> queue, User user) {
         super(queue);

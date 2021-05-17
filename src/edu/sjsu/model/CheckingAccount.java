@@ -50,12 +50,14 @@ public class CheckingAccount implements Account {
 
     /**
      * deposits to checking account balance and updates balance
+     * @param amountToDeposit the acount to deposit
      */
     public void deposit(double amountToDeposit) {
         this.balance += amountToDeposit;
     }
 
     /**
+     * sets the balance of the account
      * @param balance of account
      */
     public void setBalance(double balance) {

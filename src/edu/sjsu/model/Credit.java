@@ -9,6 +9,7 @@ public class Credit implements Account {
 
     /**
      * Constructor to update variables
+     * @param source the source account
      */
     public Credit(CheckingAccount source) {
         this.balance = 500;
@@ -16,19 +17,16 @@ public class Credit implements Account {
     }
 
     /**
+     * gets the current balance
      * @return balance
      */
     public double getBalance() {
         return this.balance;
     }
 
-
-    public void withdraw(double amount) {
-        //do we need this bc you cant withdraw from a credit card
-    }
-
     /**
      * updates balance after withdraw
+     * @param amountToPay the amount to pay off
      */
     public void payCreditCardBill(double amountToPay) {
         if (amountToPay <= balance && isPayableThroughChecking()) {
@@ -55,4 +53,14 @@ public class Credit implements Account {
     public void setBalance(double balance) {
         this.balance = balance;
     }
+
+    /**
+     * withdraw logic, not completed because it is out of our scope
+     * @param amout the amount to take out
+     */
+	@Override
+	public void withdraw(double amount) {
+		//to be implemented if we expand on this project
+		
+	}
 }
